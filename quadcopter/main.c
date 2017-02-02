@@ -56,37 +56,56 @@ void disableSysTick() {
 	SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk; // disable
 }
 
-void gpio(uint32_t GPIOx, uint32_t pin, uint32_t mode, uint32_t PuPd) {
-	GPIO_InitTypeDef initStructure;
+void gpio(uint32_t GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_TypeDef PuPd) {
+	GPIO_InitTypeDef  GPIO_InitStructure;
 	
-	// enable GPIOx clock
+	// ---------- GPIO  for LEDS -------- //
+	// GPIOD Periph clock enable
 	RCC_AHB1PeriphClockCmd(GPIOx, ENABLE);
 	
-	initStructure.GPIO_Pin = pin;
-	initStructure.GPIO_Mode = mode;
-	initStructure.GPIO_OType = GPIO_OType_PP;
-	initStructure.GPIO_Speed = GPIO_Speed_100MHz;
-	initStructure.GPIO_PuPd = PuPd;
-	GPIO_Init(GPIOx, &initStructure);
+	// Configure PD12, PD13, PD14 in output pushpull mode
+	GPIO_InitStructure.GPIO_Pin = pin;
+	GPIO_InitStructure.GPIO_Mode = mode;
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	GPIO_InitStructure.GPIO_PuPd = PuPd;
+	GPIO_Init(GPIOD, &GPIO_InitStructure);
+
 }
 
 
+void deneme(uint32_t gpiox, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_TypeDef pupd) {
+	GPIO_InitTypeDef  GPIO_InitStructure;
+	
+	// ---------- GPIO  for LEDS -------- //
+	// GPIOD Periph clock enable
+	RCC_AHB1PeriphClockCmd(gpiox, ENABLE);
+	
+	// Configure PD12, PD13, PD14 in output pushpull mode
+	GPIO_InitStructure.GPIO_Pin = pin;
+	GPIO_InitStructure.GPIO_Mode = mode;
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	GPIO_InitStructure.GPIO_PuPd = pupd;
+	GPIO_Init(GPIOD, &GPIO_InitStructure);
 
+}
 
 
 int main() {
 	setSysTick();
-	gpio(GPIOD,
-		 GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15,
-		 OUTPUT,
-		 NOPULL);
-	gpio(GPIOA,
-		 GPIO_Pin_0,
-		 INPUT,
-		 NOPULL);
-	
+//	gpio(RCC_AHB1Periph_GPIOD,
+//		 GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15,
+//		 GPIO_Mode_OUT,
+//		 GPIO_PuPd_NOPULL);
+//	gpio(RCC_AHB1Periph_GPIOA,
+//		 GPIO_Pin_0,
+//		 INPUT,
+//		 NOPULL);
+	deneme(RCC_AHB1Periph_GPIOD, GPIO_Pin_14, OUTPUT, GPIO_PuPd_NOPULL);
+	GPIO_SetBits(GPIOD, GPIO_Pin_14);
 	while(true) {
-		loop();
+//		loop();
 	}
 }
 
