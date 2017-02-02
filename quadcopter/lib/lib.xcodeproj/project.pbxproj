@@ -1,0 +1,142 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		4EF5669D1E3FC72800CDE8E4 /* .DS_Store */ = {isa = PBXFileReference; lastKnownFileType = file; path = .DS_Store; sourceTree = "<group>"; };
+		4EF5669E1E3FC72800CDE8E4 /* cmsis */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cmsis; sourceTree = "<group>"; };
+		4EF5669F1E3FC72800CDE8E4 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		4EF566A01E3FC72800CDE8E4 /* STM32F4xx_StdPeriph_Driver */ = {isa = PBXFileReference; lastKnownFileType = folder; path = STM32F4xx_StdPeriph_Driver; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		4EF566971E3FC72800CDE8E4 = {
+			isa = PBXGroup;
+			children = (
+				4EF5669D1E3FC72800CDE8E4 /* .DS_Store */,
+				4EF5669E1E3FC72800CDE8E4 /* cmsis */,
+				4EF5669F1E3FC72800CDE8E4 /* Makefile */,
+				4EF566A01E3FC72800CDE8E4 /* STM32F4xx_StdPeriph_Driver */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		4EF5669C1E3FC72800CDE8E4 /* lib */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 4EF566A11E3FC72800CDE8E4 /* Build configuration list for PBXLegacyTarget "lib" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = /Users/muhsinfatih/clones/STM32F4_Templates/Barebones_MacOSX/lib;
+			dependencies = (
+			);
+			name = lib;
+			passBuildSettingsInEnvironment = 1;
+			productName = lib;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		4EF566981E3FC72800CDE8E4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = 4EF5669B1E3FC72800CDE8E4 /* Build configuration list for PBXProject "lib" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4EF566971E3FC72800CDE8E4;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4EF5669C1E3FC72800CDE8E4 /* lib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		4EF566991E3FC72800CDE8E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		4EF5669A1E3FC72800CDE8E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		4EF566A21E3FC72800CDE8E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = lib;
+			};
+			name = Debug;
+		};
+		4EF566A31E3FC72800CDE8E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = lib;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4EF5669B1E3FC72800CDE8E4 /* Build configuration list for PBXProject "lib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4EF566991E3FC72800CDE8E4 /* Debug */,
+				4EF5669A1E3FC72800CDE8E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4EF566A11E3FC72800CDE8E4 /* Build configuration list for PBXLegacyTarget "lib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4EF566A21E3FC72800CDE8E4 /* Debug */,
+				4EF566A31E3FC72800CDE8E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4EF566981E3FC72800CDE8E4 /* Project object */;
+}
