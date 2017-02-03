@@ -6,7 +6,7 @@
 #define true	1
 #define false	0
 
-#define read(idr) idr & 0x01
+#define read(idr,pin) (idr & pin)
 
 
 
@@ -89,19 +89,22 @@ int main() {
 	while(true) {
 		loop();
 	}
+	return 0;
 }
 
 bool buttonReleased = true;
 void loop() {
-	if(!buttonReleased && !GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0))
+	if(!buttonReleased && !read(GPIOA->IDR, GPIO_Pin_0)){
 		buttonReleased = true;
+		delay(200);
+	}
 	
-	
-	if(buttonReleased && GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0)) {
+	if(buttonReleased && read(GPIOA->IDR, GPIO_Pin_0)) {
 		GPIO_ToggleBits(GPIOD, GPIO_Pin_14);
 		buttonReleased = false;
+		delay(200);
 	}
-	delay(200);
+	
 	
 }
 
