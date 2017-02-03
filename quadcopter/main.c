@@ -18,6 +18,15 @@
 
 void loop();
 
+
+void enableSysTick() {
+	SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk; // enable
+}
+
+void disableSysTick() {
+	SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk; // disable
+}
+
 volatile uint32_t msTicks;
 void SysTick_Handler() {
 	++msTicks;
@@ -48,73 +57,60 @@ void setSysTick() {
 	}
 }
 
-void enableSysTick() {
-	SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk; // enable
-}
 
-void disableSysTick() {
-	SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk; // disable
-}
 
-void gpio(uint32_t GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_TypeDef PuPd) {
-	GPIO_InitTypeDef  GPIO_InitStructure;
+void gpio(GPIO_TypeDef* GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_TypeDef PuPd) {
+	GPIO_InitTypeDef initStructure;
 	
-	// ---------- GPIO  for LEDS -------- //
-	// GPIOD Periph clock enable
-	RCC_AHB1PeriphClockCmd(GPIOx, ENABLE);
-	
-	// Configure PD12, PD13, PD14 in output pushpull mode
-	GPIO_InitStructure.GPIO_Pin = pin;
-	GPIO_InitStructure.GPIO_Mode = mode;
-	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
-	GPIO_InitStructure.GPIO_PuPd = PuPd;
-	GPIO_Init(GPIOD, &GPIO_InitStructure);
-
-}
-
-
-void deneme(uint32_t gpiox, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_TypeDef pupd) {
-	GPIO_InitTypeDef  GPIO_InitStructure;
-	
-	// ---------- GPIO  for LEDS -------- //
-	// GPIOD Periph clock enable
-	RCC_AHB1PeriphClockCmd(gpiox, ENABLE);
-	
-	// Configure PD12, PD13, PD14 in output pushpull mode
-	GPIO_InitStructure.GPIO_Pin = pin;
-	GPIO_InitStructure.GPIO_Mode = mode;
-	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
-	GPIO_InitStructure.GPIO_PuPd = pupd;
-	GPIO_Init(GPIOD, &GPIO_InitStructure);
-
+	initStructure.GPIO_Pin = pin;
+	initStructure.GPIO_Mode = mode;
+	initStructure.GPIO_OType = GPIO_OType_PP;
+	initStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	initStructure.GPIO_PuPd = PuPd;
+	GPIO_Init(GPIOx, &initStructure);
 }
 
 
 int main() {
 	setSysTick();
-//	gpio(RCC_AHB1Periph_GPIOD,
-//		 GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15,
-//		 GPIO_Mode_OUT,
-//		 GPIO_PuPd_NOPULL);
-//	gpio(RCC_AHB1Periph_GPIOA,
-//		 GPIO_Pin_0,
-//		 INPUT,
-//		 NOPULL);
-	deneme(RCC_AHB1Periph_GPIOD, GPIO_Pin_14, OUTPUT, GPIO_PuPd_NOPULL);
-	GPIO_SetBits(GPIOD, GPIO_Pin_14);
+
+	// enable GPIOx clock
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+	gpio(GPIOD,
+		 GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15,
+		 OUTPUT,
+		 NOPULL);
+	gpio(GPIOA,
+		 GPIO_Pin_0,
+		 INPUT,
+		 NOPULL);
+//	GPIO_SetBits(GPIOD, GPIO_Pin_14);
 	while(true) {
-//		loop();
+		loop();
 	}
 }
 
 
 void loop() {
 	
-	if(read(GPIOA->IDR)) { // IDR: input data register
+	if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0)) {
 		GPIO_ToggleBits(GPIOD, GPIO_Pin_14);
-		delay(200);
 	}
+	delay(200);
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
