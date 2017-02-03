@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 #include <stm32f4xx.h>
-
+#include <stdbool.h>
 
 
 
@@ -91,11 +91,15 @@ int main() {
 	}
 }
 
-
+bool buttonReleased = true;
 void loop() {
+	if(!buttonReleased && !GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0))
+		buttonReleased = true;
 	
-	if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0)) {
+	
+	if(buttonReleased && GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0)) {
 		GPIO_ToggleBits(GPIOD, GPIO_Pin_14);
+		buttonReleased = false;
 	}
 	delay(200);
 	
