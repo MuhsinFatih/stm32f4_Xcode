@@ -109,7 +109,7 @@ void USART2_IRQHandler(){
 	if(USART_GetITStatus(USART2, USART_IT_RXNE)){
 		static int count = 0;
 		char ch = USART2->DR;
-		if((ch != '\n')){
+		if((ch != '\n') && (count < MAX_WORDLEN)){
 			receivedStr[count++] = ch;
 		} else {
 			receivedStr[count] = '\n';

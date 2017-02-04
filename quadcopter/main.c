@@ -16,9 +16,6 @@
 #include "def.h"
 
 
-void loop();
-
-
 void enableSysTick() {
 	SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk; // enable
 }
@@ -137,8 +134,11 @@ void main() {
 
 	
 	setup_Periph();
-//	usart_puts(USART2, "hello world!\n");
+	for(int i=0; i<10000; ++i)
+	usart_puts(USART2, "hello world!");
+	usart_puts(USART2, "\nyey\n");
 	while(true) loop();
+	
 }
 
 bool buttonReleased = true;
