@@ -137,7 +137,7 @@ void main() {
 
 	
 	setup_Periph();
-	usart_puts(USART2, "hello world!\n");
+//	usart_puts(USART2, "hello world!\n");
 	while(true) loop();
 }
 
