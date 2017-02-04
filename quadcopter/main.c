@@ -71,6 +71,8 @@ void gpio(GPIO_TypeDef* GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_Typ
 void setup_Periph() {
 	GPIO_InitTypeDef gpioStructure;
 	USART_InitTypeDef usartStructure;
+	NVIC_InitTypeDef nvicStructure;
+	
 	
 	// Enable the periph clock for usart1
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
@@ -97,12 +99,31 @@ void setup_Periph() {
 	usartStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
 	USART_Init(USART2,&usartStructure);
 	
+	// enable interrupt for receive event on usart
+	USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);
+	
+	nvicStructure.NVIC_IRQChannel = USART2_IRQn;
+	nvicStructure.NVIC_IRQChannelPreemptionPriority = 0; // 0: highest priority. (lowest=15)
+	nvicStructure.NVIC_IRQChannelSubPriority = 0;
+	nvicStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&nvicStructure);
+	
+	USART_Cmd(USART2, ENABLE);
+	
+	
 }
 
+void usart_puts(USART_TypeDef *USARTx, volatile char *str) {
+	while(*str) {
+//		while(!(USARTx->SR & 0x040)); // get 6'th bit
+		while(USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET);
+		USART_SendData(USARTx, *str);
+	}
+}
 
 int main() {
 	setSysTick();
-
+	
 	// enable GPIOx clock
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
@@ -112,6 +133,7 @@ int main() {
 		 INPUT, GPIO_PuPd_DOWN);
 
 	
+	setup_Periph();
 	
 	
 	
