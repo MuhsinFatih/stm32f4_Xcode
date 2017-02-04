@@ -98,3 +98,47 @@ __attribute__((weak)) void SysTick_Handler(void)
 {
 
 }
+
+#define MAX_WORDLEN		255
+volatile char receivedStr[MAX_WORDLEN + 1];
+extern void usart_puts(USART_TypeDef *USARTx, volatile char *str);
+// Interrupt request handler for all usart2 interrupts
+// This interrupt handler will be executed each time a char is received in usart2
+void USART2_IRQHandler(){
+	// make sure it was usart2 and we didnt screw up things
+	if(USART_GetITStatus(USART2, USART_IT_RXNE)){
+		static int count = 0;
+		char ch = USART2->DR;
+		if((ch != '\n')){
+			receivedStr[count++] = ch;
+		} else {
+			receivedStr[count] = '\n';
+			count = 0;
+			usart_puts(USART2, receivedStr);
+		}
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

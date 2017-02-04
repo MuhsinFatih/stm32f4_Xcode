@@ -102,6 +102,7 @@ void setup_Periph() {
 	// enable interrupt for receive event on usart
 	USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);
 	
+	//IRQ: interrupt request
 	nvicStructure.NVIC_IRQChannel = USART2_IRQn;
 	nvicStructure.NVIC_IRQChannelPreemptionPriority = 0; // 0: highest priority. (lowest=15)
 	nvicStructure.NVIC_IRQChannelSubPriority = 0;
