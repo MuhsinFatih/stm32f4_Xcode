@@ -637,7 +637,7 @@ void Reset_Handler(void)
  8000366:	bf00      	nop
  8000368:	20000000 	.word	0x20000000
  800036c:	20000028 	.word	0x20000028
- 8000370:	08001210 	.word	0x08001210
+ 8000370:	08001214 	.word	0x08001214
  8000374:	20000028 	.word	0x20000028
  8000378:	2000002c 	.word	0x2000002c
 
@@ -5151,8 +5151,8 @@ ITStatus USART_GetITStatus(USART_TypeDef* USARTx, uint16_t USART_IT)
 // microsecond resolution
 void setSysTick() {
 	if (SysTick_Config(SystemCoreClock / 1000000)) {
- 8001178:	4b1f      	ldr	r3, [pc, #124]	; (80011f8 <main+0x80>)
- 800117a:	4a20      	ldr	r2, [pc, #128]	; (80011fc <main+0x84>)
+ 8001178:	4b20      	ldr	r3, [pc, #128]	; (80011fc <main+0x84>)
+ 800117a:	4a21      	ldr	r2, [pc, #132]	; (8001200 <main+0x88>)
  800117c:	681b      	ldr	r3, [r3, #0]
  800117e:	fba2 2303 	umull	r2, r3, r2, r3
  8001182:	0c9b      	lsrs	r3, r3, #18
@@ -5175,14 +5175,14 @@ int main() {
  800118e:	b500      	push	{lr}
 
   SysTick->LOAD  = ticks - 1;                                  /* set reload register */
- 8001190:	4a1b      	ldr	r2, [pc, #108]	; (8001200 <main+0x88>)
+ 8001190:	4a1c      	ldr	r2, [pc, #112]	; (8001204 <main+0x8c>)
     \param [in]  priority  Priority to set.
  */
 __STATIC_INLINE void NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
 {
   if(IRQn < 0) {
     SCB->SHP[((uint32_t)(IRQn) & 0xF)-4] = ((priority << (8 - __NVIC_PRIO_BITS)) & 0xff); } /* set Priority for Cortex-M  System Interrupts */
- 8001192:	491c      	ldr	r1, [pc, #112]	; (8001204 <main+0x8c>)
+ 8001192:	491d      	ldr	r1, [pc, #116]	; (8001208 <main+0x90>)
  */
 __STATIC_INLINE uint32_t SysTick_Config(uint32_t ticks)
 {
@@ -5231,42 +5231,47 @@ void gpio(GPIO_TypeDef* GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_Typ
 	initStructure.GPIO_Pin = pin;
 	initStructure.GPIO_Mode = mode;
  80011b6:	2601      	movs	r6, #1
-	initStructure.GPIO_OType = GPIO_OType_PP;
-	initStructure.GPIO_Speed = GPIO_Speed_100MHz;
-	initStructure.GPIO_PuPd = PuPd;
-	GPIO_Init(GPIOx, &initStructure);
- 80011b8:	4669      	mov	r1, sp
 }
 
 void gpio(GPIO_TypeDef* GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_TypeDef PuPd) {
 	GPIO_InitTypeDef initStructure;
 	
 	initStructure.GPIO_Pin = pin;
- 80011ba:	f44f 4370 	mov.w	r3, #61440	; 0xf000
+ 80011b8:	f44f 4370 	mov.w	r3, #61440	; 0xf000
+	initStructure.GPIO_Mode = mode;
+	initStructure.GPIO_OType = GPIO_OType_PP;
+	initStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	initStructure.GPIO_PuPd = PuPd;
+	GPIO_Init(GPIOx, &initStructure);
+ 80011bc:	4669      	mov	r1, sp
+	GPIO_InitTypeDef initStructure;
+	
+	initStructure.GPIO_Pin = pin;
 	initStructure.GPIO_Mode = mode;
 	initStructure.GPIO_OType = GPIO_OType_PP;
 	initStructure.GPIO_Speed = GPIO_Speed_100MHz;
  80011be:	2503      	movs	r5, #3
 	initStructure.GPIO_PuPd = PuPd;
 	GPIO_Init(GPIOx, &initStructure);
- 80011c0:	4811      	ldr	r0, [pc, #68]	; (8001208 <main+0x90>)
-void gpio(GPIO_TypeDef* GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_TypeDef PuPd) {
-	GPIO_InitTypeDef initStructure;
-	
-	initStructure.GPIO_Pin = pin;
-	initStructure.GPIO_Mode = mode;
-	initStructure.GPIO_OType = GPIO_OType_PP;
- 80011c2:	f88d 4006 	strb.w	r4, [sp, #6]
-	initStructure.GPIO_Speed = GPIO_Speed_100MHz;
-	initStructure.GPIO_PuPd = PuPd;
- 80011c6:	f88d 4007 	strb.w	r4, [sp, #7]
+ 80011c0:	4812      	ldr	r0, [pc, #72]	; (800120c <main+0x94>)
 }
 
 void gpio(GPIO_TypeDef* GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_TypeDef PuPd) {
 	GPIO_InitTypeDef initStructure;
 	
 	initStructure.GPIO_Pin = pin;
- 80011ca:	9300      	str	r3, [sp, #0]
+ 80011c2:	9300      	str	r3, [sp, #0]
+	initStructure.GPIO_Mode = mode;
+	initStructure.GPIO_OType = GPIO_OType_PP;
+ 80011c4:	f88d 4006 	strb.w	r4, [sp, #6]
+	initStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	initStructure.GPIO_PuPd = PuPd;
+ 80011c8:	f88d 4007 	strb.w	r4, [sp, #7]
+
+void gpio(GPIO_TypeDef* GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_TypeDef PuPd) {
+	GPIO_InitTypeDef initStructure;
+	
+	initStructure.GPIO_Pin = pin;
 	initStructure.GPIO_Mode = mode;
  80011cc:	f88d 6004 	strb.w	r6, [sp, #4]
 	initStructure.GPIO_OType = GPIO_OType_PP;
@@ -5275,36 +5280,45 @@ void gpio(GPIO_TypeDef* GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_Typ
 	initStructure.GPIO_PuPd = PuPd;
 	GPIO_Init(GPIOx, &initStructure);
  80011d4:	f7ff fce6 	bl	8000ba4 <GPIO_Init>
- 80011d8:	4669      	mov	r1, sp
- 80011da:	480c      	ldr	r0, [pc, #48]	; (800120c <main+0x94>)
+	
+	initStructure.GPIO_Pin = pin;
+	initStructure.GPIO_Mode = mode;
+	initStructure.GPIO_OType = GPIO_OType_PP;
+	initStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	initStructure.GPIO_PuPd = PuPd;
+ 80011d8:	2302      	movs	r3, #2
+	GPIO_Init(GPIOx, &initStructure);
+ 80011da:	4669      	mov	r1, sp
+ 80011dc:	480c      	ldr	r0, [pc, #48]	; (8001210 <main+0x98>)
 }
 
 void gpio(GPIO_TypeDef* GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_TypeDef PuPd) {
 	GPIO_InitTypeDef initStructure;
 	
 	initStructure.GPIO_Pin = pin;
- 80011dc:	9600      	str	r6, [sp, #0]
+ 80011de:	9600      	str	r6, [sp, #0]
 	initStructure.GPIO_Mode = mode;
- 80011de:	f88d 4004 	strb.w	r4, [sp, #4]
+ 80011e0:	f88d 4004 	strb.w	r4, [sp, #4]
 	initStructure.GPIO_OType = GPIO_OType_PP;
- 80011e2:	f88d 4006 	strb.w	r4, [sp, #6]
+ 80011e4:	f88d 4006 	strb.w	r4, [sp, #6]
 	initStructure.GPIO_Speed = GPIO_Speed_100MHz;
- 80011e6:	f88d 5005 	strb.w	r5, [sp, #5]
+ 80011e8:	f88d 5005 	strb.w	r5, [sp, #5]
 	initStructure.GPIO_PuPd = PuPd;
- 80011ea:	f88d 4007 	strb.w	r4, [sp, #7]
+ 80011ec:	f88d 3007 	strb.w	r3, [sp, #7]
 	GPIO_Init(GPIOx, &initStructure);
- 80011ee:	f7ff fcd9 	bl	8000ba4 <GPIO_Init>
+ 80011f0:	f7ff fcd8 	bl	8000ba4 <GPIO_Init>
 	
 	
 	
 	
 	
 	while(true) loop();
- 80011f2:	f7ff f84f 	bl	8000294 <loop>
- 80011f6:	e7fc      	b.n	80011f2 <main+0x7a>
- 80011f8:	20000014 	.word	0x20000014
- 80011fc:	431bde83 	.word	0x431bde83
- 8001200:	e000e010 	.word	0xe000e010
- 8001204:	e000ed00 	.word	0xe000ed00
- 8001208:	40020c00 	.word	0x40020c00
- 800120c:	40020000 	.word	0x40020000
+ 80011f4:	f7ff f84e 	bl	8000294 <loop>
+ 80011f8:	e7fc      	b.n	80011f4 <main+0x7c>
+ 80011fa:	bf00      	nop
+ 80011fc:	20000014 	.word	0x20000014
+ 8001200:	431bde83 	.word	0x431bde83
+ 8001204:	e000e010 	.word	0xe000e010
+ 8001208:	e000ed00 	.word	0xe000ed00
+ 800120c:	40020c00 	.word	0x40020c00
+ 8001210:	40020000 	.word	0x40020000

@@ -109,7 +109,7 @@ int main() {
 	gpio(GPIOD, pin12 | pin13 | pin14 | pin15,
 		 OUTPUT, NOPULL);
 	gpio(GPIOA, pin0,
-		 INPUT, NOPULL);
+		 INPUT, GPIO_PuPd_DOWN);
 
 	
 	

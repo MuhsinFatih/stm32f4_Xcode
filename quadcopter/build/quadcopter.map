@@ -69,7 +69,7 @@ END GROUP
                 0x0000000008000000                g_pfnVectors
                 0x0000000008000188                . = ALIGN (0x4)
 
-.text           0x0000000008000188     0x1088
+.text           0x0000000008000188     0x108c
                 0x0000000008000188                . = ALIGN (0x4)
  *(.text)
  .text          0x0000000008000188      0x180 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.o
@@ -276,7 +276,7 @@ END GROUP
                 0x000000000800111c                USART_GetITStatus
                 0x0000000008001168                USART_ClearITPendingBit
  *(.text*)
- .text.startup  0x0000000008001178       0x98 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.o
+ .text.startup  0x0000000008001178       0x9c /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.o
                 0x0000000008001178                main
  *(.rodata)
  *(.rodata*)
@@ -287,49 +287,49 @@ END GROUP
  *(.eh_frame)
  *(.init)
  *(.fini)
-                0x0000000008001210                . = ALIGN (0x4)
-                0x0000000008001210                _etext = .
-                0x0000000008001210                _exit = .
+                0x0000000008001214                . = ALIGN (0x4)
+                0x0000000008001214                _etext = .
+                0x0000000008001214                _exit = .
 
-.vfp11_veneer   0x0000000008001210        0x0
+.vfp11_veneer   0x0000000008001214        0x0
  .vfp11_veneer  0x0000000000000000        0x0 linker stubs
 
-.v4_bx          0x0000000008001210        0x0
+.v4_bx          0x0000000008001214        0x0
  .v4_bx         0x0000000000000000        0x0 linker stubs
 
-.iplt           0x0000000008001210        0x0
+.iplt           0x0000000008001214        0x0
  .iplt          0x0000000000000000        0x0 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.o
 
-.rel.dyn        0x0000000008001210        0x0
+.rel.dyn        0x0000000008001214        0x0
  .rel.iplt      0x0000000000000000        0x0 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM            0x0000000008001210        0x0
-                0x0000000008001210                __exidx_start = .
+.ARM            0x0000000008001214        0x0
+                0x0000000008001214                __exidx_start = .
  *(.ARM.exidx*)
-                0x0000000008001210                __exidx_end = .
+                0x0000000008001214                __exidx_end = .
 
-.preinit_array  0x0000000008001210        0x0
-                0x0000000008001210                PROVIDE (__preinit_array_start, .)
+.preinit_array  0x0000000008001214        0x0
+                0x0000000008001214                PROVIDE (__preinit_array_start, .)
  *(.preinit_array*)
-                0x0000000008001210                PROVIDE (__preinit_array_end, .)
+                0x0000000008001214                PROVIDE (__preinit_array_end, .)
 
-.init_array     0x0000000008001210        0x0
-                0x0000000008001210                PROVIDE (__init_array_start, .)
+.init_array     0x0000000008001214        0x0
+                0x0000000008001214                PROVIDE (__init_array_start, .)
  *(SORT(.init_array.*))
  *(.init_array*)
-                0x0000000008001210                PROVIDE (__init_array_end, .)
+                0x0000000008001214                PROVIDE (__init_array_end, .)
 
-.fini_array     0x0000000008001210        0x0
-                0x0000000008001210                PROVIDE (__fini_array_start, .)
+.fini_array     0x0000000008001214        0x0
+                0x0000000008001214                PROVIDE (__fini_array_start, .)
  *(.fini_array*)
  *(SORT(.fini_array.*))
-                0x0000000008001210                PROVIDE (__fini_array_end, .)
-                0x0000000008001210                __sidata = .
+                0x0000000008001214                PROVIDE (__fini_array_end, .)
+                0x0000000008001214                __sidata = .
 
-.data           0x0000000020000000       0x28 load address 0x0000000008001210
+.data           0x0000000020000000       0x28 load address 0x0000000008001214
                 0x0000000020000000                . = ALIGN (0x4)
                 0x0000000020000000                _sdata = .
                 0x0000000020000000                __data_start__ = _sdata
@@ -346,11 +346,11 @@ END GROUP
                 0x0000000020000028                _edata = .
                 0x0000000020000028                __data_end__ = _edata
 
-.igot.plt       0x0000000020000028        0x0 load address 0x0000000008001238
+.igot.plt       0x0000000020000028        0x0 load address 0x000000000800123c
  .igot.plt      0x0000000000000000        0x0 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.o
                 0x0000000020000028                . = ALIGN (0x4)
 
-.bss            0x0000000020000028        0x4 load address 0x0000000008001238
+.bss            0x0000000020000028        0x4 load address 0x000000000800123c
                 0x0000000020000028                _sbss = .
                 0x0000000020000028                __bss_start__ = _sbss
  *(.bss)
@@ -363,7 +363,7 @@ END GROUP
                 0x000000002000002c                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x000000002000002c      0x400 load address 0x000000000800123c
+                0x000000002000002c      0x400 load address 0x0000000008001240
                 0x000000002000002c                . = ALIGN (0x4)
                 0x000000002000002c                PROVIDE (end, .)
                 0x000000002000002c                PROVIDE (_end, .)
@@ -420,14 +420,14 @@ OUTPUT(/Users/muhsinfatih/developer/quadcopter/quadcopter/build/quadcopter.elf e
  .debug_ranges  0x0000000000000150       0x18 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.o
  .debug_ranges  0x0000000000000168       0x20 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
 
-.debug_line     0x0000000000000000     0x1010
- .debug_line    0x0000000000000000      0x376 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.o
- .debug_line    0x0000000000000376       0x68 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.o
- .debug_line    0x00000000000003de      0x170 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/stm32f4xx_it.o
- .debug_line    0x000000000000054e      0x200 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.o
- .debug_line    0x000000000000074e      0x326 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
- .debug_line    0x0000000000000a74      0x270 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_gpio.o)
- .debug_line    0x0000000000000ce4      0x32c /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_usart.o)
+.debug_line     0x0000000000000000     0x1012
+ .debug_line    0x0000000000000000      0x378 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.o
+ .debug_line    0x0000000000000378       0x68 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.o
+ .debug_line    0x00000000000003e0      0x170 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/stm32f4xx_it.o
+ .debug_line    0x0000000000000550      0x200 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.o
+ .debug_line    0x0000000000000750      0x326 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
+ .debug_line    0x0000000000000a76      0x270 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_gpio.o)
+ .debug_line    0x0000000000000ce6      0x32c /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_usart.o)
 
 .debug_str      0x0000000000000000     0x1953
  .debug_str     0x0000000000000000      0xacc /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.o
