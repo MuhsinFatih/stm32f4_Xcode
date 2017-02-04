@@ -91,7 +91,7 @@ void setup_Periph() {
 	GPIO_PinAFConfig(GPIOA, GPIO_PinSource2, GPIO_AF_USART2);
 	GPIO_PinAFConfig(GPIOA, GPIO_PinSource3, GPIO_AF_USART2);
 	
-	usartStructure.USART_BaudRate = 9600;
+	usartStructure.USART_BaudRate = 230400;
 	usartStructure.USART_WordLength = USART_WordLength_8b;
 	usartStructure.USART_StopBits = USART_StopBits_1;
 	usartStructure.USART_Parity = USART_Parity_No;
@@ -116,8 +116,10 @@ void setup_Periph() {
 void usart_puts(USART_TypeDef *USARTx, volatile char *str) {
 	while(*str) {
 //		while(!(USARTx->SR & 0x040)); // get 6'th bit
-		while(USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET);
+		// get the TC (transmission complete) flag
+		while(!USART_GetFlagStatus(USART2, USART_FLAG_TC));
 		USART_SendData(USARTx, *str);
+		*str++;
 	}
 }
 
@@ -134,7 +136,7 @@ int main() {
 
 	
 	setup_Periph();
-	
+	usart_puts(USART2, "hello world!\n");
 	
 	
 	
