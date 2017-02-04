@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stm32f4xx.h>
 #include <stdbool.h>
-
+#include "def.h"
 
 
 void loop();
@@ -27,26 +27,54 @@ void disableSysTick() {
 	SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk; // disable
 }
 
-volatile uint32_t msTicks;
+volatile uint32_t ticks;
 void SysTick_Handler() {
-	++msTicks;
+	++ticks;
 }
+
+static bool asyncTimerOn = false;
 
 // (happens every 1ms)
 static void delay(__IO uint32_t milliseconds) {
-	msTicks = 0;
-	enableSysTick();
-	milliseconds *= 10;
-	while (msTicks < milliseconds);
+	uint32_t microseconds = 0;
+	if(!asyncTimerOn) ticks = 0; // make sure we don't run out of 32 bits at random times
+	else microseconds += ticks;
+	enableSysTick(); // start as soon as possible
+	microseconds += milliseconds * 10; //clarity
+	while (ticks < microseconds);
 	disableSysTick();
 }
 
 // (happens every 1microseconds)
-static void delay_micro(__IO uint32_t dlyTicks) {
-	msTicks = 0;
-	enableSysTick();
-	while (msTicks < dlyTicks);
+static void delay_micro(__IO uint32_t microseconds) {
+	if(!asyncTimerOn) ticks = 0; // make sure we don't run out of 32 bits at random times
+	else microseconds += ticks;
+	enableSysTick(); // start as soon as possible
+	while (ticks < microseconds);
 	disableSysTick();
+}
+
+
+typedef enum timeinterval{
+	microseconds, milliseconds, seconds
+} timeinterval;
+
+
+// aslında daha iyi bir fikrim var: startAsyncTimer a her sayaç için özel elapsedTime değişkeni yapalım, startAsyncTimer fonksiyonuda bu değişkenlerin
+// hepsinin pointer ını depolasın ve yeni timer gelince bütün timerların elapsedTime'ları geçen süre kadar artırılsın. Tabi bu iş için C++ la compile
+// etmeyi halledersem çok güzel olur :)
+static uint32_t startAsyncTimer(uint32_t time, timeinterval interval) {
+	if (asyncTimerOn) return ticks; // if timer is already on then abstractly another timer is working. Don't reset that timer
+	asyncTimerOn = true;
+	ticks = 0;
+	enableSysTick();
+	return 0; // 0 elapsed
+}
+
+#define stopAsyncTimer disableSysTick();
+
+static uint32_t elapsedTime(){
+	
 }
 
 // microsecond resolution
@@ -71,39 +99,65 @@ void gpio(GPIO_TypeDef* GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_Typ
 }
 
 
+
+void EXTI0_IRQHandler() {
+	if (EXTI_GetITStatus(EXTI_Line0)) {
+		EXTI_ClearITPendingBit(EXTI_Line0); // Clear the flag
+		
+		GPIO_ToggleBits(GPIOD, pin14);
+//		delay(200);
+		
+	}
+}
+
 int main() {
 	setSysTick();
 
 	// enable GPIOx clock
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-	gpio(GPIOD,
-		 GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15,
-		 OUTPUT,
-		 NOPULL);
-	gpio(GPIOA,
-		 GPIO_Pin_0,
-		 INPUT,
-		 NOPULL);
-//	GPIO_SetBits(GPIOD, GPIO_Pin_14);
-	while(true) {
-		loop();
-	}
+	gpio(GPIOD, pin12 | pin13 | pin14 | pin15,
+		 OUTPUT, NOPULL);
+	gpio(GPIOA, pin0,
+		 INPUT, GPIO_PuPd_DOWN);
+	
+	
+	GPIO_SetBits(GPIOD, pin14);
+	
+	
+	// connect exti0 to gpioA. Since it is exti0 the interrupt will use pin0
+	SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOA, EXTI_PinSource0 /*exti0*/ );
+	
+	//Configure the exti0 line
+	EXTI_InitTypeDef extiStructure;
+	
+	extiStructure.EXTI_Line = EXTI_Line0;
+	extiStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+	// set up when interrupt will trigger. Since we set up the button to pull down (gpioA pin0. pupd_down it is),
+	// when button is not pressed it will be logic LOW. If we set trigger to rising then it will trigger when the
+	// button is pressed, if we set it to falling then it will trigger after releasing the button
+	extiStructure.EXTI_Trigger = EXTI_Trigger_Rising;
+	extiStructure.EXTI_LineCmd = ENABLE;
+	
+	EXTI_Init(&extiStructure);
+	
+	// configure the nvic
+	NVIC_InitTypeDef nvicStructure;
+	nvicStructure.NVIC_IRQChannel = EXTI0_IRQn;	// interrupt for exti0
+	nvicStructure.NVIC_IRQChannelPreemptionPriority = 0x01;
+	nvicStructure.NVIC_IRQChannelSubPriority = 0x01;
+	nvicStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&nvicStructure);
+	
+	
+	
+	while(true) loop();
 	return 0;
 }
 
 bool buttonReleased = true;
 void loop() {
-	if(!buttonReleased && !read(GPIOA->IDR, GPIO_Pin_0)){
-		buttonReleased = true;
-		delay(200);
-	}
 	
-	if(buttonReleased && read(GPIOA->IDR, GPIO_Pin_0)) {
-		GPIO_ToggleBits(GPIOD, GPIO_Pin_14);
-		buttonReleased = false;
-		delay(200);
-	}
 	
 	
 }
