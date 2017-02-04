@@ -29,6 +29,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4EEAB07F1E4541AD006325B1 /* def.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = def.h; sourceTree = "<group>"; };
 		4EF566C51E3FC77B00CDE8E4 /* quadcopter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = quadcopter; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EF566D01E3FC78700CDE8E4 /* CortexM4asmOps.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = CortexM4asmOps.s; sourceTree = "<group>"; };
 		4EF566D11E3FC78700CDE8E4 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
@@ -88,6 +89,7 @@
 				4EF566DA1E3FC78700CDE8E4 /* stm32f4xx_it.h */,
 				4EF566DB1E3FC78700CDE8E4 /* stm32f4xx-openOCD.cfg */,
 				4EF566DC1E3FC78700CDE8E4 /* system_stm32f4xx.c */,
+				4EEAB07F1E4541AD006325B1 /* def.h */,
 			);
 			path = quadcopter;
 			sourceTree = "<group>";

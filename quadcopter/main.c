@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stm32f4xx.h>
 #include <stdbool.h>
-
+#include "def.h"
 
 
 void loop();
@@ -57,8 +57,6 @@ void setSysTick() {
 	}
 }
 
-
-
 void gpio(GPIO_TypeDef* GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_TypeDef PuPd) {
 	GPIO_InitTypeDef initStructure;
 	
@@ -70,6 +68,37 @@ void gpio(GPIO_TypeDef* GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_Typ
 	GPIO_Init(GPIOx, &initStructure);
 }
 
+void setup_Periph() {
+	GPIO_InitTypeDef gpioStructure;
+	USART_InitTypeDef usartStructure;
+	
+	// Enable the periph clock for usart1
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
+	// Enable the GPIOA clock
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+	
+	// Setup the gpio pins for Tx and Rx
+	gpioStructure.GPIO_Pin = pin2 | pin3;
+	gpioStructure.GPIO_Mode = GPIO_Mode_AF;
+	gpioStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	gpioStructure.GPIO_OType = GPIO_OType_PP;
+	gpioStructure.GPIO_PuPd = GPIO_PuPd_UP;
+	
+	GPIO_Init(GPIOA, &gpioStructure);
+	
+	GPIO_PinAFConfig(GPIOA, GPIO_PinSource2, GPIO_AF_USART2);
+	GPIO_PinAFConfig(GPIOA, GPIO_PinSource3, GPIO_AF_USART2);
+	
+	usartStructure.USART_BaudRate = 9600;
+	usartStructure.USART_WordLength = USART_WordLength_8b;
+	usartStructure.USART_StopBits = USART_StopBits_1;
+	usartStructure.USART_Parity = USART_Parity_No;
+	usartStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+	usartStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+	USART_Init(USART2,&usartStructure);
+	
+}
+
 
 int main() {
 	setSysTick();
@@ -77,30 +106,30 @@ int main() {
 	// enable GPIOx clock
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-	gpio(GPIOD,
-		 GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15,
-		 OUTPUT,
-		 NOPULL);
-	gpio(GPIOA,
-		 GPIO_Pin_0,
-		 INPUT,
-		 NOPULL);
-//	GPIO_SetBits(GPIOD, GPIO_Pin_14);
-	while(true) {
-		loop();
-	}
+	gpio(GPIOD, pin12 | pin13 | pin14 | pin15,
+		 OUTPUT, NOPULL);
+	gpio(GPIOA, pin0,
+		 INPUT, NOPULL);
+
+	
+	
+	
+	
+	
+	
+	while(true) loop();
 	return 0;
 }
 
 bool buttonReleased = true;
 void loop() {
-	if(!buttonReleased && !read(GPIOA->IDR, GPIO_Pin_0)){
+	if(!buttonReleased && !read(GPIOA->IDR, pin0)){
 		buttonReleased = true;
 		delay(200);
 	}
 	
-	if(buttonReleased && read(GPIOA->IDR, GPIO_Pin_0)) {
-		GPIO_ToggleBits(GPIOD, GPIO_Pin_14);
+	if(buttonReleased && read(GPIOA->IDR, pin0)) {
+		GPIO_ToggleBits(GPIOD, pin14);
 		buttonReleased = false;
 		delay(200);
 	}
