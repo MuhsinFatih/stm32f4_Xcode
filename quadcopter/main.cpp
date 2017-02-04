@@ -124,7 +124,7 @@ void usart_puts(USART_TypeDef *USARTx, volatile char *str) {
 	}
 }
 
-int main() {
+void main() {
 	setSysTick();
 	
 	// enable GPIOx clock
@@ -138,12 +138,7 @@ int main() {
 	
 	setup_Periph();
 	usart_puts(USART2, "hello world!\n");
-	
-	
-	
-	
 	while(true) loop();
-	return 0;
 }
 
 bool buttonReleased = true;

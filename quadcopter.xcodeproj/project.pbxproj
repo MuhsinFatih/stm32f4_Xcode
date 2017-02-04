@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4EF566DD1E3FC78700CDE8E4 /* CortexM4asmOps.s in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D01E3FC78700CDE8E4 /* CortexM4asmOps.s */; };
-		4EF566DE1E3FC78700CDE8E4 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D21E3FC78700CDE8E4 /* main.c */; };
+		4EF566DE1E3FC78700CDE8E4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D21E3FC78700CDE8E4 /* main.cpp */; };
 		4EF566DF1E3FC78700CDE8E4 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D31E3FC78700CDE8E4 /* Makefile */; };
-		4EF566E01E3FC78700CDE8E4 /* startup_stm32f4xx.c in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D51E3FC78700CDE8E4 /* startup_stm32f4xx.c */; };
+		4EF566E01E3FC78700CDE8E4 /* startup_stm32f4xx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D51E3FC78700CDE8E4 /* startup_stm32f4xx.cpp */; };
 		4EF566E11E3FC78700CDE8E4 /* stm32f4_P24_definitions.s in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D71E3FC78700CDE8E4 /* stm32f4_P24_definitions.s */; };
 		4EF566E21E3FC78700CDE8E4 /* stm32f4xx_it.c in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D91E3FC78700CDE8E4 /* stm32f4xx_it.c */; };
 		4EF566E31E3FC78700CDE8E4 /* system_stm32f4xx.c in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566DC1E3FC78700CDE8E4 /* system_stm32f4xx.c */; };
@@ -33,10 +33,10 @@
 		4EF566C51E3FC77B00CDE8E4 /* quadcopter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = quadcopter; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EF566D01E3FC78700CDE8E4 /* CortexM4asmOps.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = CortexM4asmOps.s; sourceTree = "<group>"; };
 		4EF566D11E3FC78700CDE8E4 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
-		4EF566D21E3FC78700CDE8E4 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		4EF566D21E3FC78700CDE8E4 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		4EF566D31E3FC78700CDE8E4 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; usesTabs = 1; };
 		4EF566D41E3FC78700CDE8E4 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
-		4EF566D51E3FC78700CDE8E4 /* startup_stm32f4xx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = startup_stm32f4xx.c; sourceTree = "<group>"; };
+		4EF566D51E3FC78700CDE8E4 /* startup_stm32f4xx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = startup_stm32f4xx.cpp; sourceTree = "<group>"; };
 		4EF566D61E3FC78700CDE8E4 /* stm32_flash.ld */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stm32_flash.ld; sourceTree = "<group>"; };
 		4EF566D71E3FC78700CDE8E4 /* stm32f4_P24_definitions.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = stm32f4_P24_definitions.s; sourceTree = "<group>"; };
 		4EF566D81E3FC78700CDE8E4 /* stm32f4xx_conf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stm32f4xx_conf.h; sourceTree = "<group>"; };
@@ -78,10 +78,10 @@
 			children = (
 				4EF566D01E3FC78700CDE8E4 /* CortexM4asmOps.s */,
 				4EF566D11E3FC78700CDE8E4 /* lib */,
-				4EF566D21E3FC78700CDE8E4 /* main.c */,
+				4EF566D21E3FC78700CDE8E4 /* main.cpp */,
 				4EF566D31E3FC78700CDE8E4 /* Makefile */,
 				4EF566D41E3FC78700CDE8E4 /* README */,
-				4EF566D51E3FC78700CDE8E4 /* startup_stm32f4xx.c */,
+				4EF566D51E3FC78700CDE8E4 /* startup_stm32f4xx.cpp */,
 				4EF566D61E3FC78700CDE8E4 /* stm32_flash.ld */,
 				4EF566D71E3FC78700CDE8E4 /* stm32f4_P24_definitions.s */,
 				4EF566D81E3FC78700CDE8E4 /* stm32f4xx_conf.h */,
@@ -175,9 +175,9 @@
 			files = (
 				4EF566E21E3FC78700CDE8E4 /* stm32f4xx_it.c in Sources */,
 				4EF566DF1E3FC78700CDE8E4 /* Makefile in Sources */,
-				4EF566E01E3FC78700CDE8E4 /* startup_stm32f4xx.c in Sources */,
+				4EF566E01E3FC78700CDE8E4 /* startup_stm32f4xx.cpp in Sources */,
 				4EF566E31E3FC78700CDE8E4 /* system_stm32f4xx.c in Sources */,
-				4EF566DE1E3FC78700CDE8E4 /* main.c in Sources */,
+				4EF566DE1E3FC78700CDE8E4 /* main.cpp in Sources */,
 				4EF566E11E3FC78700CDE8E4 /* stm32f4_P24_definitions.s in Sources */,
 				4EF566DD1E3FC78700CDE8E4 /* CortexM4asmOps.s in Sources */,
 			);
