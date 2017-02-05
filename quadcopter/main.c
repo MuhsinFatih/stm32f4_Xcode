@@ -55,15 +55,16 @@ static void delay_micro(__IO uint32_t microseconds) {
 }
 
 
+// timer is at microseconds resolution. enum values can be used to multiply with ticks to get human readable results
 typedef enum timeinterval{
-	microseconds, milliseconds, seconds
+	microseconds = 1, milliseconds = 10, seconds = 100
 } timeinterval;
 
 
 // aslında daha iyi bir fikrim var: startAsyncTimer a her sayaç için özel elapsedTime değişkeni yapalım, startAsyncTimer fonksiyonuda bu değişkenlerin
 // hepsinin pointer ını depolasın ve yeni timer gelince bütün timerların elapsedTime'ları geçen süre kadar artırılsın. Tabi bu iş için C++ la compile
 // etmeyi halledersem çok güzel olur :)
-static uint32_t startAsyncTimer(uint32_t time, timeinterval interval) {
+static uint32_t startAsyncStopwatch(uint32_t time, timeinterval interval) {
 	if (asyncTimerOn) return ticks; // if timer is already on then abstractly another timer is working. Don't reset that timer
 	asyncTimerOn = true;
 	ticks = 0;
@@ -73,8 +74,8 @@ static uint32_t startAsyncTimer(uint32_t time, timeinterval interval) {
 
 #define stopAsyncTimer disableSysTick();
 
-static uint32_t elapsedTime(){
-	
+static uint32_t elapsedTime(uint32_t offset, timeinterval interval){
+	return (ticks - offset) * interval;
 }
 
 // microsecond resolution
