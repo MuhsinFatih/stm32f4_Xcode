@@ -14,6 +14,7 @@
 		4EF566E11E3FC78700CDE8E4 /* stm32f4_P24_definitions.s in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D71E3FC78700CDE8E4 /* stm32f4_P24_definitions.s */; };
 		4EF566E21E3FC78700CDE8E4 /* stm32f4xx_it.c in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D91E3FC78700CDE8E4 /* stm32f4xx_it.c */; };
 		4EF566E31E3FC78700CDE8E4 /* system_stm32f4xx.c in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566DC1E3FC78700CDE8E4 /* system_stm32f4xx.c */; };
+		D1820E021E47D0E900F5275D /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1820E001E47D0E900F5275D /* test.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +45,8 @@
 		4EF566DA1E3FC78700CDE8E4 /* stm32f4xx_it.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stm32f4xx_it.h; sourceTree = "<group>"; };
 		4EF566DB1E3FC78700CDE8E4 /* stm32f4xx-openOCD.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "stm32f4xx-openOCD.cfg"; sourceTree = "<group>"; };
 		4EF566DC1E3FC78700CDE8E4 /* system_stm32f4xx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = system_stm32f4xx.c; sourceTree = "<group>"; };
+		D1820E001E47D0E900F5275D /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
+		D1820E011E47D0E900F5275D /* test.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,8 @@
 				4EF566DB1E3FC78700CDE8E4 /* stm32f4xx-openOCD.cfg */,
 				4EF566DC1E3FC78700CDE8E4 /* system_stm32f4xx.c */,
 				4E8732231E464E4F00FB1087 /* def.h */,
+				D1820E001E47D0E900F5275D /* test.cpp */,
+				D1820E011E47D0E900F5275D /* test.hpp */,
 			);
 			path = quadcopter;
 			sourceTree = "<group>";
@@ -174,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EF566E21E3FC78700CDE8E4 /* stm32f4xx_it.c in Sources */,
+				D1820E021E47D0E900F5275D /* test.cpp in Sources */,
 				4EF566DF1E3FC78700CDE8E4 /* Makefile in Sources */,
 				4EF566E01E3FC78700CDE8E4 /* startup_stm32f4xx.c in Sources */,
 				4EF566E31E3FC78700CDE8E4 /* system_stm32f4xx.c in Sources */,
