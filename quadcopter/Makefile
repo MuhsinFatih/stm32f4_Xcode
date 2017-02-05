@@ -1,6 +1,6 @@
 # STM32F4-Discovery Makefile for Mac OSX
 
-SRCS=$(wildcard *.c) 
+SRCS=$(wildcard *.c)
 # Add assembly source files here or use $(wildcard *.s) for all .s files
 S_SRCS = CortexM4asmOps.s
 
@@ -31,6 +31,7 @@ endif
 
 AS=$(BINPATH)arm-none-eabi-as
 CC=$(BINPATH)arm-none-eabi-gcc
+CP=$(BINPATH)arm-none-eabi-g++
 LD=$(BINPATH)arm-none-eabi-gcc
 OBJCOPY=$(BINPATH)arm-none-eabi-objcopy
 OBJDUMP=$(BINPATH)arm-none-eabi-objdump
@@ -113,4 +114,4 @@ clean:
 
 flash:
 	/usr/local/bin/st-flash write $(shell pwd)/build/$(PROJ_NAME).bin 0x08000000
-	
+

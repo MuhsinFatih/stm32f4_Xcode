@@ -43,7 +43,7 @@ void SysTick_Handler() {
  80001ac:	20000024 	.word	0x20000024
 
 080001b0 <setSysTick>:
-	return ticks * interval;
+	return (ticks - offset) * interval;
 }
 
 // microsecond resolution
@@ -77,7 +77,7 @@ __STATIC_INLINE void NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
     SCB->SHP[((uint32_t)(IRQn) & 0xF)-4] = ((priority << (8 - __NVIC_PRIO_BITS)) & 0xff); } /* set Priority for Cortex-M  System Interrupts */
  80001c8:	4809      	ldr	r0, [pc, #36]	; (80001f0 <setSysTick+0x40>)
 static uint32_t elapsedTime(uint32_t offset, timeinterval interval){
-	return ticks * interval;
+	return (ticks - offset) * interval;
 }
 
 // microsecond resolution
@@ -4065,7 +4065,7 @@ FlagStatus SYSCFG_GetCompensationCellStatus(void)
  8000e80:	40013800 	.word	0x40013800
 
 08000e84 <main>:
-	return ticks * interval;
+	return (ticks - offset) * interval;
 }
 
 // microsecond resolution
