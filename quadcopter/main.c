@@ -86,8 +86,6 @@ void setSysTick() {
 	}
 }
 
-
-
 void gpio(GPIO_TypeDef* GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_TypeDef PuPd) {
 	GPIO_InitTypeDef initStructure;
 	
@@ -99,7 +97,63 @@ void gpio(GPIO_TypeDef* GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_Typ
 	GPIO_Init(GPIOx, &initStructure);
 }
 
+void setup_Periph() {
+	GPIO_InitTypeDef gpioStructure;
+	USART_InitTypeDef usartStructure;
+	NVIC_InitTypeDef nvicStructure;
+	
+	
+	// Enable the periph clock for usart1
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
+	// Enable the GPIOA clock
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+	
+	// Setup the gpio pins for Tx and Rx
+	gpioStructure.GPIO_Pin = pin2 | pin3;
+	gpioStructure.GPIO_Mode = GPIO_Mode_AF;
+	gpioStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	gpioStructure.GPIO_OType = GPIO_OType_PP;
+	gpioStructure.GPIO_PuPd = GPIO_PuPd_UP;
+	
+	GPIO_Init(GPIOA, &gpioStructure);
+	
+	GPIO_PinAFConfig(GPIOA, GPIO_PinSource2, GPIO_AF_USART2);
+	GPIO_PinAFConfig(GPIOA, GPIO_PinSource3, GPIO_AF_USART2);
+	
+	usartStructure.USART_BaudRate = 230400;
+	usartStructure.USART_WordLength = USART_WordLength_8b;
+	usartStructure.USART_StopBits = USART_StopBits_1;
+	usartStructure.USART_Parity = USART_Parity_No;
+	usartStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+	usartStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+	USART_Init(USART2,&usartStructure);
+	
+	// enable interrupt for receive event on usart
+	USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);
+	
+	//IRQ: interrupt request
+	nvicStructure.NVIC_IRQChannel = USART2_IRQn;
+	nvicStructure.NVIC_IRQChannelPreemptionPriority = 0; // 0: highest priority. (lowest=15)
+	nvicStructure.NVIC_IRQChannelSubPriority = 0;
+	nvicStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&nvicStructure);
+	
+	USART_Cmd(USART2, ENABLE);
+	
+	
+}
 
+void usart_puts(USART_TypeDef *USARTx, volatile char *str) {
+	while(*str) {
+//		while(!(USARTx->SR & 0x040)); // get 6'th bit
+		// get the TC (transmission complete) flag
+		while(!USART_GetFlagStatus(USART2, USART_FLAG_TC));
+		USART_SendData(USARTx, *str);
+		*str++;
+	}
+}
+
+void main() {
 
 void EXTI0_IRQHandler() {
 	if (EXTI_GetITStatus(EXTI_Line0)) {
@@ -113,7 +167,7 @@ void EXTI0_IRQHandler() {
 
 int main() {
 	setSysTick();
-
+	
 	// enable GPIOx clock
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
@@ -150,7 +204,9 @@ int main() {
 	nvicStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&nvicStructure);
 	
-	
+
+	setup_Periph();
+	usart_puts(USART2, "hello world!\n");
 	
 	while(true) loop();
 	return 0;
@@ -158,7 +214,16 @@ int main() {
 
 bool buttonReleased = true;
 void loop() {
+	if(!buttonReleased && !read(GPIOA->IDR, pin0)){
+		buttonReleased = true;
+		delay(200);
+	}
 	
+	if(buttonReleased && read(GPIOA->IDR, pin0)) {
+		GPIO_ToggleBits(GPIOD, pin14);
+		buttonReleased = false;
+		delay(200);
+	}
 	
 	
 }

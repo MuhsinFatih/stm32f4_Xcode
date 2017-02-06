@@ -141,7 +141,7 @@ extern void SystemInit(void);
 /* Private typedef -----------------------------------------------------------*/
 /* function prototypes ------------------------------------------------------*/
 void Reset_Handler(void) __attribute__((__interrupt__));
-extern int main(void);
+extern void main();
 extern void _CPUregTestPOST (void);
 
 /******************************************************************************
