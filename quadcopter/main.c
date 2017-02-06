@@ -8,7 +8,9 @@
 
 #define read(idr,pin) (idr & pin)
 
-
+#ifndef BAUDRATE
+	#define BAUDRATE 230400 
+#endif
 
 #include <stdio.h>
 #include <stm32f4xx.h>
@@ -74,8 +76,12 @@ static uint32_t startAsyncStopwatch() {
 
 #define stopAsyncTimer disableSysTick();
 
+static char msg[255];
+
 static uint32_t elapsedTime(uint32_t offset, timeinterval interval){
 	int ret = floor(ticks / interval);
+	sprintf(msg, "%u ticks %i interval %i ticks/interval %u offset\n", ticks, interval, ret, offset);
+	usart_puts(USART2, msg);
 	return ret - offset;
 }
 
@@ -121,7 +127,7 @@ void setup_Periph() {
 	GPIO_PinAFConfig(GPIOA, GPIO_PinSource2, GPIO_AF_USART2);
 	GPIO_PinAFConfig(GPIOA, GPIO_PinSource3, GPIO_AF_USART2);
 	
-	usartStructure.USART_BaudRate = 230400;
+	usartStructure.USART_BaudRate = BAUDRATE;
 	usartStructure.USART_WordLength = USART_WordLength_8b;
 	usartStructure.USART_StopBits = USART_StopBits_1;
 	usartStructure.USART_Parity = USART_Parity_No;
@@ -213,7 +219,8 @@ int main() {
 }
 
 bool buttonReleased = true;
-char msg[50];
+uint32_t offset = 0;
+uint32_t elapsed = 0;
 void loop() {
 	if(!buttonReleased && !read(GPIOA->IDR, pin0)){
 		buttonReleased = true;
@@ -225,12 +232,11 @@ void loop() {
 		buttonReleased = false;
 		delay(200);
 	}
-	static uint32_t offset = 0;
-	static uint32_t elapsed = 0;
 	elapsed = elapsedTime(offset, seconds);
+//	msg[0] = '\0';
 	if(elapsed != 0){
-		sprintf(msg, "%i offset %i elapsed\n", offset, elapsed);
-		offset++;
+//		sprintf(msg, "%i elapsed %i offset\n", elapsed, offset);
+		offset += elapsed;
 	}
 	usart_puts(USART2, msg);
 	

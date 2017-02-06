@@ -1,5 +1,7 @@
 # STM32F4-Discovery Makefile for Mac OSX
 
+BAUDRATE=230400
+
 SRCS=$(wildcard *.c) 
 # Add assembly source files here or use $(wildcard *.s) for all .s files
 S_SRCS = CortexM4asmOps.s
@@ -40,7 +42,7 @@ LINKER_SCRIPT = stm32_flash.ld
 
 CPU = -mcpu=cortex-m4 -mthumb
 
-CFLAGS  = $(CPU) -c -std=gnu99 -g -O2 -Wall
+CFLAGS  = $(CPU) -c -std=gnu99 -g -O2 -Wall -D BAUDRATE=$(BAUDRATE)
 LDFLAGS  = $(CPU) -mlittle-endian -mthumb-interwork -nostartfiles -Wl,--gc-sections,-Map=$(OUTPATH)/$(PROJ_NAME).map,--cref --specs=nano.specs
 
 ifeq ($(FLOAT_TYPE), hard)
@@ -113,4 +115,5 @@ clean:
 
 flash:
 	/usr/local/bin/st-flash write $(shell pwd)/build/$(PROJ_NAME).bin 0x08000000
+#TERM='vt100'	screen /dev/cu.usbmodem1411 $(BAUDRATE)
 	
