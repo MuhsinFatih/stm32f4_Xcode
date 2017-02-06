@@ -64,7 +64,7 @@ typedef enum timeinterval{
 // aslında daha iyi bir fikrim var: startAsyncTimer a her sayaç için özel elapsedTime değişkeni yapalım, startAsyncTimer fonksiyonuda bu değişkenlerin
 // hepsinin pointer ını depolasın ve yeni timer gelince bütün timerların elapsedTime'ları geçen süre kadar artırılsın. Tabi bu iş için C++ la compile
 // etmeyi halledersem çok güzel olur :)
-static uint32_t startAsyncStopwatch(uint32_t time, timeinterval interval) {
+static uint32_t startAsyncStopwatch() {
 	if (asyncTimerOn) return ticks; // if timer is already on then abstractly another timer is working. Don't reset that timer
 	asyncTimerOn = true;
 	ticks = 0;
@@ -222,6 +222,9 @@ void loop() {
 		buttonReleased = false;
 		delay(200);
 	}
+	startAsyncStopwatch();
+	char* msg = sprintf("%f seconds passed", elapsedTime(0, seconds));
+	usart_puts(USART2, msg);
 	
 	
 }
