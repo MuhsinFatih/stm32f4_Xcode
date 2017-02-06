@@ -31,7 +31,6 @@ Discarded input sections
  .ARM.attributes
                 0x0000000000000000       0x33 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/test.cpp.o
  .data          0x0000000000000000        0x1 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
- .bss           0x0000000000000000        0x0 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
  .data          0x0000000000000000        0x0 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.c.o
  .bss           0x0000000000000000        0x0 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.c.o
  .data          0x0000000000000000        0x0 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/stm32f4xx_it.c.o
@@ -85,10 +84,10 @@ END GROUP
                 0x0000000008000000                g_pfnVectors
                 0x0000000008000188                . = ALIGN (0x4)
 
-.text           0x0000000008000188      0xdd4
+.text           0x0000000008000188      0xe24
                 0x0000000008000188                . = ALIGN (0x4)
  *(.text)
- .text          0x0000000008000188       0xb8 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
+ .text          0x0000000008000188       0xe4 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
                 0x0000000008000188                enableSysTick
                 0x0000000008000194                disableSysTick
                 0x00000000080001a0                SysTick_Handler
@@ -96,196 +95,196 @@ END GROUP
                 0x00000000080001f4                gpio
                 0x0000000008000218                EXTI0_IRQHandler
                 0x000000000800023c                loop
- .text          0x0000000008000240       0x74 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.c.o
-                0x0000000008000240                DMA1_Stream3_IRQHandler
-                0x0000000008000240                HASH_RNG_IRQHandler
-                0x0000000008000240                EXTI2_IRQHandler
-                0x0000000008000240                TIM8_CC_IRQHandler
-                0x0000000008000240                DebugMon_Handler
-                0x0000000008000240                TIM1_CC_IRQHandler
-                0x0000000008000240                DMA2_Stream5_IRQHandler
-                0x0000000008000240                DMA1_Stream5_IRQHandler
-                0x0000000008000240                PVD_IRQHandler
-                0x0000000008000240                SDIO_IRQHandler
-                0x0000000008000240                TAMP_STAMP_IRQHandler
-                0x0000000008000240                PendSV_Handler
-                0x0000000008000240                CAN2_RX1_IRQHandler
-                0x0000000008000240                EXTI3_IRQHandler
-                0x0000000008000240                TIM8_TRG_COM_TIM14_IRQHandler
-                0x0000000008000240                TIM1_UP_TIM10_IRQHandler
-                0x0000000008000240                TIM8_UP_TIM13_IRQHandler
-                0x0000000008000240                I2C3_ER_IRQHandler
-                0x0000000008000240                I2C2_EV_IRQHandler
-                0x0000000008000240                DMA1_Stream2_IRQHandler
-                0x0000000008000240                CAN1_RX0_IRQHandler
-                0x0000000008000240                FPU_IRQHandler
-                0x0000000008000240                OTG_HS_WKUP_IRQHandler
-                0x0000000008000240                UsageFault_Handler
-                0x0000000008000240                CAN2_SCE_IRQHandler
-                0x0000000008000240                DMA2_Stream2_IRQHandler
-                0x0000000008000240                SPI1_IRQHandler
-                0x0000000008000240                TIM6_DAC_IRQHandler
-                0x0000000008000240                TIM1_BRK_TIM9_IRQHandler
-                0x0000000008000240                DCMI_IRQHandler
-                0x0000000008000240                CAN2_RX0_IRQHandler
-                0x0000000008000240                DMA2_Stream3_IRQHandler
-                0x0000000008000240                USART6_IRQHandler
-                0x0000000008000240                USART3_IRQHandler
-                0x0000000008000240                CRYP_IRQHandler
-                0x0000000008000240                RTC_Alarm_IRQHandler
-                0x0000000008000240                CAN1_RX1_IRQHandler
-                0x0000000008000240                UART5_IRQHandler
-                0x0000000008000240                DMA2_Stream0_IRQHandler
-                0x0000000008000240                TIM4_IRQHandler
-                0x0000000008000240                I2C1_EV_IRQHandler
-                0x0000000008000240                DMA1_Stream6_IRQHandler
-                0x0000000008000240                DMA1_Stream1_IRQHandler
-                0x0000000008000240                UART4_IRQHandler
-                0x0000000008000240                TIM3_IRQHandler
-                0x0000000008000240                RCC_IRQHandler
-                0x0000000008000240                TIM8_BRK_TIM12_IRQHandler
-                0x0000000008000240                Default_Handler
-                0x0000000008000240                EXTI15_10_IRQHandler
-                0x0000000008000240                ADC_IRQHandler
-                0x0000000008000240                DMA1_Stream7_IRQHandler
-                0x0000000008000240                TIM7_IRQHandler
-                0x0000000008000240                CAN2_TX_IRQHandler
-                0x0000000008000240                TIM5_IRQHandler
-                0x0000000008000240                DMA2_Stream7_IRQHandler
-                0x0000000008000240                I2C3_EV_IRQHandler
-                0x0000000008000240                EXTI9_5_IRQHandler
-                0x0000000008000240                RTC_WKUP_IRQHandler
-                0x0000000008000240                ETH_WKUP_IRQHandler
-                0x0000000008000240                SPI2_IRQHandler
-                0x0000000008000240                OTG_HS_EP1_IN_IRQHandler
-                0x0000000008000240                MemManage_Handler
-                0x0000000008000240                DMA1_Stream0_IRQHandler
-                0x0000000008000240                CAN1_TX_IRQHandler
-                0x0000000008000240                SVC_Handler
-                0x0000000008000240                EXTI4_IRQHandler
-                0x0000000008000240                FSMC_IRQHandler
-                0x0000000008000240                ETH_IRQHandler
-                0x0000000008000240                OTG_HS_EP1_OUT_IRQHandler
-                0x0000000008000240                WWDG_IRQHandler
-                0x0000000008000240                TIM2_IRQHandler
-                0x0000000008000240                OTG_FS_WKUP_IRQHandler
-                0x0000000008000240                TIM1_TRG_COM_TIM11_IRQHandler
-                0x0000000008000240                OTG_HS_IRQHandler
-                0x0000000008000240                EXTI1_IRQHandler
-                0x0000000008000240                USART2_IRQHandler
-                0x0000000008000240                I2C2_ER_IRQHandler
-                0x0000000008000240                DMA2_Stream1_IRQHandler
-                0x0000000008000240                CAN1_SCE_IRQHandler
-                0x0000000008000240                FLASH_IRQHandler
-                0x0000000008000240                DMA2_Stream4_IRQHandler
-                0x0000000008000240                BusFault_Handler
-                0x0000000008000240                USART1_IRQHandler
-                0x0000000008000240                OTG_FS_IRQHandler
-                0x0000000008000240                SPI3_IRQHandler
-                0x0000000008000240                DMA1_Stream4_IRQHandler
-                0x0000000008000240                I2C1_ER_IRQHandler
-                0x0000000008000240                DMA2_Stream6_IRQHandler
-                0x0000000008000244                Reset_Handler
- .text          0x00000000080002b4       0x24 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/stm32f4xx_it.c.o
-                0x00000000080002b4                NMI_Handler
-                0x00000000080002b8                HardFault_Handler
- .text          0x00000000080002d8      0x168 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.c.o
-                0x00000000080002d8                SystemInit
-                0x00000000080003cc                SystemCoreClockUpdate
- .text          0x0000000008000440       0xc8 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(misc.o)
-                0x0000000008000440                NVIC_PriorityGroupConfig
-                0x0000000008000454                NVIC_Init
-                0x00000000080004c4                NVIC_SetVectorTable
-                0x00000000080004d8                NVIC_SystemLPConfig
-                0x00000000080004f0                SysTick_CLKSourceConfig
- .text          0x0000000008000508      0x540 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
-                0x0000000008000508                RCC_DeInit
-                0x0000000008000558                RCC_HSEConfig
-                0x0000000008000568                RCC_WaitForHSEStartUp
-                0x000000000800059c                RCC_AdjustHSICalibrationValue
-                0x00000000080005b0                RCC_HSICmd
-                0x00000000080005bc                RCC_LSEConfig
-                0x00000000080005dc                RCC_LSICmd
-                0x00000000080005e8                RCC_PLLConfig
-                0x000000000800060c                RCC_PLLCmd
-                0x0000000008000618                RCC_PLLI2SConfig
-                0x000000000800062c                RCC_PLLI2SCmd
-                0x0000000008000638                RCC_PLLSAIConfig
-                0x0000000008000650                RCC_PLLSAICmd
-                0x000000000800065c                RCC_ClockSecuritySystemCmd
-                0x0000000008000668                RCC_MCO1Config
-                0x000000000800067c                RCC_MCO2Config
-                0x0000000008000690                RCC_SYSCLKConfig
-                0x00000000080006a4                RCC_GetSYSCLKSource
-                0x00000000080006b4                RCC_HCLKConfig
-                0x00000000080006c8                RCC_PCLK1Config
-                0x00000000080006dc                RCC_PCLK2Config
-                0x00000000080006f0                RCC_GetClocksFreq
-                0x0000000008000788                RCC_RTCCLKConfig
-                0x00000000080007b8                RCC_RTCCLKCmd
-                0x00000000080007c4                RCC_BackupResetCmd
-                0x00000000080007d0                RCC_I2SCLKConfig
-                0x00000000080007dc                RCC_SAIPLLI2SClkDivConfig
-                0x00000000080007f4                RCC_SAIPLLSAIClkDivConfig
-                0x0000000008000810                RCC_SAIBlockACLKConfig
-                0x0000000008000828                RCC_SAIBlockBCLKConfig
-                0x0000000008000840                RCC_LTDCCLKDivConfig
-                0x0000000008000858                RCC_TIMCLKPresConfig
-                0x0000000008000864                RCC_AHB1PeriphClockCmd
-                0x000000000800087c                RCC_AHB2PeriphClockCmd
-                0x0000000008000894                RCC_AHB3PeriphClockCmd
-                0x00000000080008ac                RCC_APB1PeriphClockCmd
-                0x00000000080008c4                RCC_APB2PeriphClockCmd
-                0x00000000080008dc                RCC_AHB1PeriphResetCmd
-                0x00000000080008f4                RCC_AHB2PeriphResetCmd
-                0x000000000800090c                RCC_AHB3PeriphResetCmd
-                0x0000000008000924                RCC_APB1PeriphResetCmd
-                0x000000000800093c                RCC_APB2PeriphResetCmd
-                0x0000000008000954                RCC_AHB1PeriphClockLPModeCmd
-                0x000000000800096c                RCC_AHB2PeriphClockLPModeCmd
-                0x0000000008000984                RCC_AHB3PeriphClockLPModeCmd
-                0x000000000800099c                RCC_APB1PeriphClockLPModeCmd
-                0x00000000080009b4                RCC_APB2PeriphClockLPModeCmd
-                0x00000000080009cc                RCC_ITConfig
-                0x00000000080009e4                RCC_GetFlagStatus
-                0x0000000008000a18                RCC_ClearFlag
-                0x0000000008000a28                RCC_GetITStatus
-                0x0000000008000a3c                RCC_ClearITPendingBit
- .text          0x0000000008000a48       0xf8 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_exti.o)
-                0x0000000008000a48                EXTI_DeInit
-                0x0000000008000a64                EXTI_Init
-                0x0000000008000ae0                EXTI_StructInit
-                0x0000000008000af0                EXTI_GenerateSWInterrupt
-                0x0000000008000b00                EXTI_GetFlagStatus
-                0x0000000008000b14                EXTI_ClearFlag
-                0x0000000008000b20                EXTI_GetITStatus
-                0x0000000008000b34                EXTI_ClearITPendingBit
- .text          0x0000000008000b40      0x2b8 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_gpio.o)
-                0x0000000008000b40                GPIO_DeInit
-                0x0000000008000c9c                GPIO_Init
-                0x0000000008000d50                GPIO_StructInit
-                0x0000000008000d64                GPIO_PinLockConfig
-                0x0000000008000d88                GPIO_ReadInputDataBit
-                0x0000000008000d94                GPIO_ReadInputData
-                0x0000000008000d9c                GPIO_ReadOutputDataBit
-                0x0000000008000da8                GPIO_ReadOutputData
-                0x0000000008000db0                GPIO_SetBits
-                0x0000000008000db4                GPIO_ResetBits
-                0x0000000008000db8                GPIO_WriteBit
-                0x0000000008000dc4                GPIO_Write
-                0x0000000008000dc8                GPIO_ToggleBits
-                0x0000000008000dd0                GPIO_PinAFConfig
- .text          0x0000000008000df8       0x8c /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_syscfg.o)
-                0x0000000008000df8                SYSCFG_DeInit
-                0x0000000008000e14                SYSCFG_MemoryRemapConfig
-                0x0000000008000e20                SYSCFG_MemorySwappingBank
-                0x0000000008000e2c                SYSCFG_EXTILineConfig
-                0x0000000008000e5c                SYSCFG_ETH_MediaInterfaceConfig
-                0x0000000008000e68                SYSCFG_CompensationCellCmd
-                0x0000000008000e74                SYSCFG_GetCompensationCellStatus
+ .text          0x000000000800026c       0x74 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.c.o
+                0x000000000800026c                DMA1_Stream3_IRQHandler
+                0x000000000800026c                HASH_RNG_IRQHandler
+                0x000000000800026c                EXTI2_IRQHandler
+                0x000000000800026c                TIM8_CC_IRQHandler
+                0x000000000800026c                DebugMon_Handler
+                0x000000000800026c                TIM1_CC_IRQHandler
+                0x000000000800026c                DMA2_Stream5_IRQHandler
+                0x000000000800026c                DMA1_Stream5_IRQHandler
+                0x000000000800026c                PVD_IRQHandler
+                0x000000000800026c                SDIO_IRQHandler
+                0x000000000800026c                TAMP_STAMP_IRQHandler
+                0x000000000800026c                PendSV_Handler
+                0x000000000800026c                CAN2_RX1_IRQHandler
+                0x000000000800026c                EXTI3_IRQHandler
+                0x000000000800026c                TIM8_TRG_COM_TIM14_IRQHandler
+                0x000000000800026c                TIM1_UP_TIM10_IRQHandler
+                0x000000000800026c                TIM8_UP_TIM13_IRQHandler
+                0x000000000800026c                I2C3_ER_IRQHandler
+                0x000000000800026c                I2C2_EV_IRQHandler
+                0x000000000800026c                DMA1_Stream2_IRQHandler
+                0x000000000800026c                CAN1_RX0_IRQHandler
+                0x000000000800026c                FPU_IRQHandler
+                0x000000000800026c                OTG_HS_WKUP_IRQHandler
+                0x000000000800026c                UsageFault_Handler
+                0x000000000800026c                CAN2_SCE_IRQHandler
+                0x000000000800026c                DMA2_Stream2_IRQHandler
+                0x000000000800026c                SPI1_IRQHandler
+                0x000000000800026c                TIM6_DAC_IRQHandler
+                0x000000000800026c                TIM1_BRK_TIM9_IRQHandler
+                0x000000000800026c                DCMI_IRQHandler
+                0x000000000800026c                CAN2_RX0_IRQHandler
+                0x000000000800026c                DMA2_Stream3_IRQHandler
+                0x000000000800026c                USART6_IRQHandler
+                0x000000000800026c                USART3_IRQHandler
+                0x000000000800026c                CRYP_IRQHandler
+                0x000000000800026c                RTC_Alarm_IRQHandler
+                0x000000000800026c                CAN1_RX1_IRQHandler
+                0x000000000800026c                UART5_IRQHandler
+                0x000000000800026c                DMA2_Stream0_IRQHandler
+                0x000000000800026c                TIM4_IRQHandler
+                0x000000000800026c                I2C1_EV_IRQHandler
+                0x000000000800026c                DMA1_Stream6_IRQHandler
+                0x000000000800026c                DMA1_Stream1_IRQHandler
+                0x000000000800026c                UART4_IRQHandler
+                0x000000000800026c                TIM3_IRQHandler
+                0x000000000800026c                RCC_IRQHandler
+                0x000000000800026c                TIM8_BRK_TIM12_IRQHandler
+                0x000000000800026c                Default_Handler
+                0x000000000800026c                EXTI15_10_IRQHandler
+                0x000000000800026c                ADC_IRQHandler
+                0x000000000800026c                DMA1_Stream7_IRQHandler
+                0x000000000800026c                TIM7_IRQHandler
+                0x000000000800026c                CAN2_TX_IRQHandler
+                0x000000000800026c                TIM5_IRQHandler
+                0x000000000800026c                DMA2_Stream7_IRQHandler
+                0x000000000800026c                I2C3_EV_IRQHandler
+                0x000000000800026c                EXTI9_5_IRQHandler
+                0x000000000800026c                RTC_WKUP_IRQHandler
+                0x000000000800026c                ETH_WKUP_IRQHandler
+                0x000000000800026c                SPI2_IRQHandler
+                0x000000000800026c                OTG_HS_EP1_IN_IRQHandler
+                0x000000000800026c                MemManage_Handler
+                0x000000000800026c                DMA1_Stream0_IRQHandler
+                0x000000000800026c                CAN1_TX_IRQHandler
+                0x000000000800026c                SVC_Handler
+                0x000000000800026c                EXTI4_IRQHandler
+                0x000000000800026c                FSMC_IRQHandler
+                0x000000000800026c                ETH_IRQHandler
+                0x000000000800026c                OTG_HS_EP1_OUT_IRQHandler
+                0x000000000800026c                WWDG_IRQHandler
+                0x000000000800026c                TIM2_IRQHandler
+                0x000000000800026c                OTG_FS_WKUP_IRQHandler
+                0x000000000800026c                TIM1_TRG_COM_TIM11_IRQHandler
+                0x000000000800026c                OTG_HS_IRQHandler
+                0x000000000800026c                EXTI1_IRQHandler
+                0x000000000800026c                USART2_IRQHandler
+                0x000000000800026c                I2C2_ER_IRQHandler
+                0x000000000800026c                DMA2_Stream1_IRQHandler
+                0x000000000800026c                CAN1_SCE_IRQHandler
+                0x000000000800026c                FLASH_IRQHandler
+                0x000000000800026c                DMA2_Stream4_IRQHandler
+                0x000000000800026c                BusFault_Handler
+                0x000000000800026c                USART1_IRQHandler
+                0x000000000800026c                OTG_FS_IRQHandler
+                0x000000000800026c                SPI3_IRQHandler
+                0x000000000800026c                DMA1_Stream4_IRQHandler
+                0x000000000800026c                I2C1_ER_IRQHandler
+                0x000000000800026c                DMA2_Stream6_IRQHandler
+                0x0000000008000270                Reset_Handler
+ .text          0x00000000080002e0       0x24 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/stm32f4xx_it.c.o
+                0x00000000080002e0                NMI_Handler
+                0x00000000080002e4                HardFault_Handler
+ .text          0x0000000008000304      0x168 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.c.o
+                0x0000000008000304                SystemInit
+                0x00000000080003f8                SystemCoreClockUpdate
+ .text          0x000000000800046c       0xc8 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(misc.o)
+                0x000000000800046c                NVIC_PriorityGroupConfig
+                0x0000000008000480                NVIC_Init
+                0x00000000080004f0                NVIC_SetVectorTable
+                0x0000000008000504                NVIC_SystemLPConfig
+                0x000000000800051c                SysTick_CLKSourceConfig
+ .text          0x0000000008000534      0x540 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
+                0x0000000008000534                RCC_DeInit
+                0x0000000008000584                RCC_HSEConfig
+                0x0000000008000594                RCC_WaitForHSEStartUp
+                0x00000000080005c8                RCC_AdjustHSICalibrationValue
+                0x00000000080005dc                RCC_HSICmd
+                0x00000000080005e8                RCC_LSEConfig
+                0x0000000008000608                RCC_LSICmd
+                0x0000000008000614                RCC_PLLConfig
+                0x0000000008000638                RCC_PLLCmd
+                0x0000000008000644                RCC_PLLI2SConfig
+                0x0000000008000658                RCC_PLLI2SCmd
+                0x0000000008000664                RCC_PLLSAIConfig
+                0x000000000800067c                RCC_PLLSAICmd
+                0x0000000008000688                RCC_ClockSecuritySystemCmd
+                0x0000000008000694                RCC_MCO1Config
+                0x00000000080006a8                RCC_MCO2Config
+                0x00000000080006bc                RCC_SYSCLKConfig
+                0x00000000080006d0                RCC_GetSYSCLKSource
+                0x00000000080006e0                RCC_HCLKConfig
+                0x00000000080006f4                RCC_PCLK1Config
+                0x0000000008000708                RCC_PCLK2Config
+                0x000000000800071c                RCC_GetClocksFreq
+                0x00000000080007b4                RCC_RTCCLKConfig
+                0x00000000080007e4                RCC_RTCCLKCmd
+                0x00000000080007f0                RCC_BackupResetCmd
+                0x00000000080007fc                RCC_I2SCLKConfig
+                0x0000000008000808                RCC_SAIPLLI2SClkDivConfig
+                0x0000000008000820                RCC_SAIPLLSAIClkDivConfig
+                0x000000000800083c                RCC_SAIBlockACLKConfig
+                0x0000000008000854                RCC_SAIBlockBCLKConfig
+                0x000000000800086c                RCC_LTDCCLKDivConfig
+                0x0000000008000884                RCC_TIMCLKPresConfig
+                0x0000000008000890                RCC_AHB1PeriphClockCmd
+                0x00000000080008a8                RCC_AHB2PeriphClockCmd
+                0x00000000080008c0                RCC_AHB3PeriphClockCmd
+                0x00000000080008d8                RCC_APB1PeriphClockCmd
+                0x00000000080008f0                RCC_APB2PeriphClockCmd
+                0x0000000008000908                RCC_AHB1PeriphResetCmd
+                0x0000000008000920                RCC_AHB2PeriphResetCmd
+                0x0000000008000938                RCC_AHB3PeriphResetCmd
+                0x0000000008000950                RCC_APB1PeriphResetCmd
+                0x0000000008000968                RCC_APB2PeriphResetCmd
+                0x0000000008000980                RCC_AHB1PeriphClockLPModeCmd
+                0x0000000008000998                RCC_AHB2PeriphClockLPModeCmd
+                0x00000000080009b0                RCC_AHB3PeriphClockLPModeCmd
+                0x00000000080009c8                RCC_APB1PeriphClockLPModeCmd
+                0x00000000080009e0                RCC_APB2PeriphClockLPModeCmd
+                0x00000000080009f8                RCC_ITConfig
+                0x0000000008000a10                RCC_GetFlagStatus
+                0x0000000008000a44                RCC_ClearFlag
+                0x0000000008000a54                RCC_GetITStatus
+                0x0000000008000a68                RCC_ClearITPendingBit
+ .text          0x0000000008000a74       0xf8 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_exti.o)
+                0x0000000008000a74                EXTI_DeInit
+                0x0000000008000a90                EXTI_Init
+                0x0000000008000b0c                EXTI_StructInit
+                0x0000000008000b1c                EXTI_GenerateSWInterrupt
+                0x0000000008000b2c                EXTI_GetFlagStatus
+                0x0000000008000b40                EXTI_ClearFlag
+                0x0000000008000b4c                EXTI_GetITStatus
+                0x0000000008000b60                EXTI_ClearITPendingBit
+ .text          0x0000000008000b6c      0x2b8 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_gpio.o)
+                0x0000000008000b6c                GPIO_DeInit
+                0x0000000008000cc8                GPIO_Init
+                0x0000000008000d7c                GPIO_StructInit
+                0x0000000008000d90                GPIO_PinLockConfig
+                0x0000000008000db4                GPIO_ReadInputDataBit
+                0x0000000008000dc0                GPIO_ReadInputData
+                0x0000000008000dc8                GPIO_ReadOutputDataBit
+                0x0000000008000dd4                GPIO_ReadOutputData
+                0x0000000008000ddc                GPIO_SetBits
+                0x0000000008000de0                GPIO_ResetBits
+                0x0000000008000de4                GPIO_WriteBit
+                0x0000000008000df0                GPIO_Write
+                0x0000000008000df4                GPIO_ToggleBits
+                0x0000000008000dfc                GPIO_PinAFConfig
+ .text          0x0000000008000e24       0x8c /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_syscfg.o)
+                0x0000000008000e24                SYSCFG_DeInit
+                0x0000000008000e40                SYSCFG_MemoryRemapConfig
+                0x0000000008000e4c                SYSCFG_MemorySwappingBank
+                0x0000000008000e58                SYSCFG_EXTILineConfig
+                0x0000000008000e88                SYSCFG_ETH_MediaInterfaceConfig
+                0x0000000008000e94                SYSCFG_CompensationCellCmd
+                0x0000000008000ea0                SYSCFG_GetCompensationCellStatus
  *(.text*)
- .text.startup  0x0000000008000e84       0xd8 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
-                0x0000000008000e84                main
+ .text.startup  0x0000000008000eb0       0xfc /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
+                0x0000000008000eb0                main
  *(.rodata)
  *(.rodata*)
  *(.glue_7)
@@ -295,49 +294,49 @@ END GROUP
  *(.eh_frame)
  *(.init)
  *(.fini)
-                0x0000000008000f5c                . = ALIGN (0x4)
-                0x0000000008000f5c                _etext = .
-                0x0000000008000f5c                _exit = .
+                0x0000000008000fac                . = ALIGN (0x4)
+                0x0000000008000fac                _etext = .
+                0x0000000008000fac                _exit = .
 
-.vfp11_veneer   0x0000000008000f5c        0x0
+.vfp11_veneer   0x0000000008000fac        0x0
  .vfp11_veneer  0x0000000000000000        0x0 linker stubs
 
-.v4_bx          0x0000000008000f5c        0x0
+.v4_bx          0x0000000008000fac        0x0
  .v4_bx         0x0000000000000000        0x0 linker stubs
 
-.iplt           0x0000000008000f5c        0x0
+.iplt           0x0000000008000fac        0x0
  .iplt          0x0000000000000000        0x0 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/test.cpp.o
 
-.rel.dyn        0x0000000008000f5c        0x0
+.rel.dyn        0x0000000008000fac        0x0
  .rel.iplt      0x0000000000000000        0x0 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/test.cpp.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM            0x0000000008000f5c        0x0
-                0x0000000008000f5c                __exidx_start = .
+.ARM            0x0000000008000fac        0x0
+                0x0000000008000fac                __exidx_start = .
  *(.ARM.exidx*)
-                0x0000000008000f5c                __exidx_end = .
+                0x0000000008000fac                __exidx_end = .
 
-.preinit_array  0x0000000008000f5c        0x0
-                0x0000000008000f5c                PROVIDE (__preinit_array_start, .)
+.preinit_array  0x0000000008000fac        0x0
+                0x0000000008000fac                PROVIDE (__preinit_array_start, .)
  *(.preinit_array*)
-                0x0000000008000f5c                PROVIDE (__preinit_array_end, .)
+                0x0000000008000fac                PROVIDE (__preinit_array_end, .)
 
-.init_array     0x0000000008000f5c        0x0
-                0x0000000008000f5c                PROVIDE (__init_array_start, .)
+.init_array     0x0000000008000fac        0x0
+                0x0000000008000fac                PROVIDE (__init_array_start, .)
  *(SORT(.init_array.*))
  *(.init_array*)
-                0x0000000008000f5c                PROVIDE (__init_array_end, .)
+                0x0000000008000fac                PROVIDE (__init_array_end, .)
 
-.fini_array     0x0000000008000f5c        0x0
-                0x0000000008000f5c                PROVIDE (__fini_array_start, .)
+.fini_array     0x0000000008000fac        0x0
+                0x0000000008000fac                PROVIDE (__fini_array_start, .)
  *(.fini_array*)
  *(SORT(.fini_array.*))
-                0x0000000008000f5c                PROVIDE (__fini_array_end, .)
-                0x0000000008000f5c                __sidata = .
+                0x0000000008000fac                PROVIDE (__fini_array_end, .)
+                0x0000000008000fac                __sidata = .
 
-.data           0x0000000020000000       0x24 load address 0x0000000008000f5c
+.data           0x0000000020000000       0x24 load address 0x0000000008000fac
                 0x0000000020000000                . = ALIGN (0x4)
                 0x0000000020000000                _sdata = .
                 0x0000000020000000                __data_start__ = _sdata
@@ -351,64 +350,67 @@ END GROUP
                 0x0000000020000024                _edata = .
                 0x0000000020000024                __data_end__ = _edata
 
-.igot.plt       0x0000000020000024        0x0 load address 0x0000000008000f80
+.igot.plt       0x0000000020000024        0x0 load address 0x0000000008000fd0
  .igot.plt      0x0000000000000000        0x0 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/test.cpp.o
                 0x0000000020000024                . = ALIGN (0x4)
 
-.bss            0x0000000020000024        0x4 load address 0x0000000008000f80
+.bss            0x0000000020000024        0xc load address 0x0000000008000fd0
                 0x0000000020000024                _sbss = .
                 0x0000000020000024                __bss_start__ = _sbss
  *(.bss)
+ .bss           0x0000000020000024        0x5 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
+                0x0000000020000024                offset
  *(.bss*)
  *(COMMON)
- COMMON         0x0000000020000024        0x4 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
-                0x0000000020000024                ticks
-                0x0000000020000028                . = ALIGN (0x4)
-                0x0000000020000028                _ebss = .
-                0x0000000020000028                __bss_end__ = _ebss
+ *fill*         0x0000000020000029        0x3 
+ COMMON         0x000000002000002c        0x4 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
+                0x000000002000002c                ticks
+                0x0000000020000030                . = ALIGN (0x4)
+                0x0000000020000030                _ebss = .
+                0x0000000020000030                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x0000000020000028      0x400 load address 0x0000000008000f84
-                0x0000000020000028                . = ALIGN (0x4)
-                0x0000000020000028                PROVIDE (end, .)
-                0x0000000020000028                PROVIDE (_end, .)
-                0x0000000020000028                . = (. + _Min_Heap_Size)
-                0x0000000020000428                . = (. + _Min_Stack_Size)
- *fill*         0x0000000020000028      0x400 
-                0x0000000020000428                . = ALIGN (0x4)
+                0x0000000020000030      0x400 load address 0x0000000008000fdc
+                0x0000000020000030                . = ALIGN (0x4)
+                0x0000000020000030                PROVIDE (end, .)
+                0x0000000020000030                PROVIDE (_end, .)
+                0x0000000020000030                . = (. + _Min_Heap_Size)
+                0x0000000020000430                . = (. + _Min_Stack_Size)
+ *fill*         0x0000000020000030      0x400 
+                0x0000000020000430                . = ALIGN (0x4)
 OUTPUT(/Users/muhsinfatih/developer/quadcopter/quadcopter/build/quadcopter.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000     0x376c
- .debug_info    0x0000000000000000      0xd85 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
- .debug_info    0x0000000000000d85      0x11d /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.c.o
- .debug_info    0x0000000000000ea2      0x133 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/stm32f4xx_it.c.o
- .debug_info    0x0000000000000fd5      0x5e2 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.c.o
- .debug_info    0x00000000000015b7      0x526 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(misc.o)
- .debug_info    0x0000000000001add      0xe91 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
- .debug_info    0x000000000000296e      0x32a /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_exti.o)
- .debug_info    0x0000000000002c98      0x819 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_gpio.o)
- .debug_info    0x00000000000034b1      0x2bb /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_syscfg.o)
+.debug_info     0x0000000000000000     0x3896
+ .debug_info    0x0000000000000000      0xeaf /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
+ .debug_info    0x0000000000000eaf      0x11d /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.c.o
+ .debug_info    0x0000000000000fcc      0x133 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/stm32f4xx_it.c.o
+ .debug_info    0x00000000000010ff      0x5e2 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.c.o
+ .debug_info    0x00000000000016e1      0x526 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(misc.o)
+ .debug_info    0x0000000000001c07      0xe91 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
+ .debug_info    0x0000000000002a98      0x32a /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_exti.o)
+ .debug_info    0x0000000000002dc2      0x819 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_gpio.o)
+ .debug_info    0x00000000000035db      0x2bb /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_syscfg.o)
 
-.debug_abbrev   0x0000000000000000      0xeb8
- .debug_abbrev  0x0000000000000000      0x34b /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
- .debug_abbrev  0x000000000000034b       0xe5 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.c.o
- .debug_abbrev  0x0000000000000430       0x67 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/stm32f4xx_it.c.o
- .debug_abbrev  0x0000000000000497      0x145 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.c.o
- .debug_abbrev  0x00000000000005dc      0x156 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(misc.o)
- .debug_abbrev  0x0000000000000732      0x260 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
- .debug_abbrev  0x0000000000000992      0x1c5 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_exti.o)
- .debug_abbrev  0x0000000000000b57      0x1f8 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_gpio.o)
- .debug_abbrev  0x0000000000000d4f      0x169 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_syscfg.o)
+.debug_abbrev   0x0000000000000000      0xef7
+ .debug_abbrev  0x0000000000000000      0x38a /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
+ .debug_abbrev  0x000000000000038a       0xe5 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.c.o
+ .debug_abbrev  0x000000000000046f       0x67 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/stm32f4xx_it.c.o
+ .debug_abbrev  0x00000000000004d6      0x145 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.c.o
+ .debug_abbrev  0x000000000000061b      0x156 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(misc.o)
+ .debug_abbrev  0x0000000000000771      0x260 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
+ .debug_abbrev  0x00000000000009d1      0x1c5 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_exti.o)
+ .debug_abbrev  0x0000000000000b96      0x1f8 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_gpio.o)
+ .debug_abbrev  0x0000000000000d8e      0x169 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_syscfg.o)
 
-.debug_loc      0x0000000000000000     0x171f
- .debug_loc     0x0000000000000000      0x106 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
- .debug_loc     0x0000000000000106       0x3e /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.c.o
- .debug_loc     0x0000000000000144      0x13f /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.c.o
- .debug_loc     0x0000000000000283      0x161 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(misc.o)
- .debug_loc     0x00000000000003e4      0xd3c /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
- .debug_loc     0x0000000000001120      0x1a1 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_exti.o)
- .debug_loc     0x00000000000012c1      0x3b8 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_gpio.o)
- .debug_loc     0x0000000000001679       0xa6 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_syscfg.o)
+.debug_loc      0x0000000000000000     0x1749
+ .debug_loc     0x0000000000000000      0x130 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
+ .debug_loc     0x0000000000000130       0x3e /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.c.o
+ .debug_loc     0x000000000000016e      0x13f /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.c.o
+ .debug_loc     0x00000000000002ad      0x161 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(misc.o)
+ .debug_loc     0x000000000000040e      0xd3c /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
+ .debug_loc     0x000000000000114a      0x1a1 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_exti.o)
+ .debug_loc     0x00000000000012eb      0x3b8 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_gpio.o)
+ .debug_loc     0x00000000000016a3       0xa6 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_syscfg.o)
 
 .debug_aranges  0x0000000000000000      0x128
  .debug_aranges
@@ -430,40 +432,40 @@ OUTPUT(/Users/muhsinfatih/developer/quadcopter/quadcopter/build/quadcopter.elf e
  .debug_aranges
                 0x0000000000000108       0x20 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_syscfg.o)
 
-.debug_ranges   0x0000000000000000      0x108
- .debug_ranges  0x0000000000000000       0xd0 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
- .debug_ranges  0x00000000000000d0       0x18 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.c.o
- .debug_ranges  0x00000000000000e8       0x20 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
+.debug_ranges   0x0000000000000000      0x148
+ .debug_ranges  0x0000000000000000      0x110 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
+ .debug_ranges  0x0000000000000110       0x18 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.c.o
+ .debug_ranges  0x0000000000000128       0x20 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
 
-.debug_line     0x0000000000000000     0x11f1
- .debug_line    0x0000000000000000      0x33b /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
- .debug_line    0x000000000000033b       0x68 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.c.o
- .debug_line    0x00000000000003a3      0x170 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/stm32f4xx_it.c.o
- .debug_line    0x0000000000000513      0x200 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.c.o
- .debug_line    0x0000000000000713      0x1a5 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(misc.o)
- .debug_line    0x00000000000008b8      0x33a /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
- .debug_line    0x0000000000000bf2      0x1d5 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_exti.o)
- .debug_line    0x0000000000000dc7      0x284 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_gpio.o)
- .debug_line    0x000000000000104b      0x1a6 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_syscfg.o)
+.debug_line     0x0000000000000000     0x1225
+ .debug_line    0x0000000000000000      0x36f /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
+ .debug_line    0x000000000000036f       0x68 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.c.o
+ .debug_line    0x00000000000003d7      0x170 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/stm32f4xx_it.c.o
+ .debug_line    0x0000000000000547      0x200 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.c.o
+ .debug_line    0x0000000000000747      0x1a5 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(misc.o)
+ .debug_line    0x00000000000008ec      0x33a /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
+ .debug_line    0x0000000000000c26      0x1d5 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_exti.o)
+ .debug_line    0x0000000000000dfb      0x284 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_gpio.o)
+ .debug_line    0x000000000000107f      0x1a6 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_syscfg.o)
 
-.debug_str      0x0000000000000000     0x1970
- .debug_str     0x0000000000000000      0xb82 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
-                                        0xc05 (size before relaxing)
- .debug_str     0x0000000000000b82       0xa0 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.c.o
+.debug_str      0x0000000000000000     0x19c6
+ .debug_str     0x0000000000000000      0xbd8 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
+                                        0xc6c (size before relaxing)
+ .debug_str     0x0000000000000bd8       0xa0 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.c.o
                                         0x182 (size before relaxing)
- .debug_str     0x0000000000000c22       0x8f /Users/muhsinfatih/developer/quadcopter/quadcopter/build/stm32f4xx_it.c.o
+ .debug_str     0x0000000000000c78       0x8f /Users/muhsinfatih/developer/quadcopter/quadcopter/build/stm32f4xx_it.c.o
                                         0x20d (size before relaxing)
- .debug_str     0x0000000000000cb1      0x170 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.c.o
+ .debug_str     0x0000000000000d07      0x170 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.c.o
                                         0x3d7 (size before relaxing)
- .debug_str     0x0000000000000e21      0x1e3 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(misc.o)
+ .debug_str     0x0000000000000e77      0x1e3 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(misc.o)
                                         0x404 (size before relaxing)
- .debug_str     0x0000000000001004      0x660 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
+ .debug_str     0x000000000000105a      0x660 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
                                         0x9c0 (size before relaxing)
- .debug_str     0x0000000000001664       0x99 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_exti.o)
+ .debug_str     0x00000000000016ba       0x99 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_exti.o)
                                         0x38c (size before relaxing)
- .debug_str     0x00000000000016fd      0x141 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_gpio.o)
+ .debug_str     0x0000000000001753      0x141 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_gpio.o)
                                         0x4f2 (size before relaxing)
- .debug_str     0x000000000000183e      0x132 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_syscfg.o)
+ .debug_str     0x0000000000001894      0x132 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_syscfg.o)
                                         0x35b (size before relaxing)
 
 .comment        0x0000000000000000       0x70
@@ -499,16 +501,16 @@ OUTPUT(/Users/muhsinfatih/developer/quadcopter/quadcopter/build/quadcopter.elf e
  .ARM.attributes
                 0x0000000000000198       0x33 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_syscfg.o)
 
-.debug_frame    0x0000000000000000      0x894
- .debug_frame   0x0000000000000000       0xc8 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
- .debug_frame   0x00000000000000c8       0x40 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.c.o
- .debug_frame   0x0000000000000108       0xa0 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/stm32f4xx_it.c.o
- .debug_frame   0x00000000000001a8       0x3c /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.c.o
- .debug_frame   0x00000000000001e4       0x74 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(misc.o)
- .debug_frame   0x0000000000000258      0x37c /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
- .debug_frame   0x00000000000005d4       0xb4 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_exti.o)
- .debug_frame   0x0000000000000688      0x174 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_gpio.o)
- .debug_frame   0x00000000000007fc       0x98 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_syscfg.o)
+.debug_frame    0x0000000000000000      0x898
+ .debug_frame   0x0000000000000000       0xcc /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
+ .debug_frame   0x00000000000000cc       0x40 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.c.o
+ .debug_frame   0x000000000000010c       0xa0 /Users/muhsinfatih/developer/quadcopter/quadcopter/build/stm32f4xx_it.c.o
+ .debug_frame   0x00000000000001ac       0x3c /Users/muhsinfatih/developer/quadcopter/quadcopter/build/system_stm32f4xx.c.o
+ .debug_frame   0x00000000000001e8       0x74 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(misc.o)
+ .debug_frame   0x000000000000025c      0x37c /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_rcc.o)
+ .debug_frame   0x00000000000005d8       0xb4 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_exti.o)
+ .debug_frame   0x000000000000068c      0x174 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_gpio.o)
+ .debug_frame   0x0000000000000800       0x98 /Users/muhsinfatih/developer/quadcopter/quadcopter/lib/STM32F4xx_StdPeriph_Driver/libstdperiph.a(stm32f4xx_syscfg.o)
 
 Cross Reference Table
 
@@ -725,5 +727,6 @@ gpio                                              /Users/muhsinfatih/developer/q
 loop                                              /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
 main                                              /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
                                                   /Users/muhsinfatih/developer/quadcopter/quadcopter/build/startup_stm32f4xx.c.o
+offset                                            /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
 setSysTick                                        /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
 ticks                                             /Users/muhsinfatih/developer/quadcopter/quadcopter/build/main.c.o
