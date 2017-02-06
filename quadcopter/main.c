@@ -13,8 +13,8 @@
 #include <stdio.h>
 #include <stm32f4xx.h>
 #include <stdbool.h>
+#include <stm>
 #include "def.h"
-
 
 void loop();
 
@@ -57,7 +57,7 @@ static void delay_micro(__IO uint32_t microseconds) {
 
 // timer is at microseconds resolution. enum values can be used to multiply with ticks to get human readable results
 typedef enum timeinterval{
-	microseconds = 1, milliseconds = 10, seconds = 100
+	microseconds = 1, milliseconds = 1000, seconds = 1000000
 } timeinterval;
 
 
@@ -75,7 +75,8 @@ static uint32_t startAsyncStopwatch() {
 #define stopAsyncTimer disableSysTick();
 
 static uint32_t elapsedTime(uint32_t offset, timeinterval interval){
-	return (ticks - offset) * interval;
+	int ret = floor(ticks / interval);
+	return ret - offset;
 }
 
 // microsecond resolution
@@ -205,12 +206,14 @@ int main() {
 
 	setup_Periph();
 	usart_puts(USART2, "hello world!\n");
+	startAsyncStopwatch();
 	
 	while(true) loop();
 	return 0;
 }
 
 bool buttonReleased = true;
+char msg[50];
 void loop() {
 	if(!buttonReleased && !read(GPIOA->IDR, pin0)){
 		buttonReleased = true;
@@ -222,8 +225,13 @@ void loop() {
 		buttonReleased = false;
 		delay(200);
 	}
-	startAsyncStopwatch();
-	char* msg = sprintf("%f seconds passed", elapsedTime(0, seconds));
+	static uint32_t offset = 0;
+	static uint32_t elapsed = 0;
+	elapsed = elapsedTime(offset, seconds);
+	if(elapsed != 0){
+		sprintf(msg, "%i offset %i elapsed\n", offset, elapsed);
+		offset++;
+	}
 	usart_puts(USART2, msg);
 	
 	
