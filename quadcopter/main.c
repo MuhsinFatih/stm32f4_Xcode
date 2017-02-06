@@ -153,8 +153,6 @@ void usart_puts(USART_TypeDef *USARTx, volatile char *str) {
 	}
 }
 
-void main() {
-
 void EXTI0_IRQHandler() {
 	if (EXTI_GetITStatus(EXTI_Line0)) {
 		EXTI_ClearITPendingBit(EXTI_Line0); // Clear the flag
