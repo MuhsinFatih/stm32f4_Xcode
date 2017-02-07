@@ -80,8 +80,8 @@ static char msg[255];
 
 static uint32_t elapsedTime(uint32_t offset, timeinterval interval){
 	int ret = floor(ticks / interval);
-	sprintf(msg, "%u ticks %i interval %i ticks/interval %u offset\n", ticks, interval, ret, offset);
-	usart_puts(USART2, msg);
+//	sprintf(msg, "%u ticks %i interval %i ticks/interval %u offset\n", ticks, interval, ret, offset);
+//	usart_puts(USART2, msg);
 	return ret - offset;
 }
 
@@ -160,14 +160,19 @@ void usart_puts(USART_TypeDef *USARTx, volatile char *str) {
 	}
 }
 
+int btnOffset = 0;
+int btnElapsed = 0;
 void EXTI0_IRQHandler() {
-	if (EXTI_GetITStatus(EXTI_Line0)) {
-		EXTI_ClearITPendingBit(EXTI_Line0); // Clear the flag
-		
+	btnElapsed = elapsedTime(0, milliseconds);
+	
+	if (EXTI_GetITStatus(EXTI_Line0) && btnElapsed - btnOffset > 300) {
+		btnOffset = btnElapsed;
+		usart_puts(USART2, "you pressed the button\n");
 		GPIO_ToggleBits(GPIOD, pin14);
 //		delay(200);
 		
 	}
+	EXTI_ClearITPendingBit(EXTI_Line0); // Clear the flag
 }
 
 int main() {
@@ -204,8 +209,8 @@ int main() {
 	// configure the nvic
 	NVIC_InitTypeDef nvicStructure;
 	nvicStructure.NVIC_IRQChannel = EXTI0_IRQn;	// interrupt for exti0
-	nvicStructure.NVIC_IRQChannelPreemptionPriority = 0x01;
-	nvicStructure.NVIC_IRQChannelSubPriority = 0x01;
+	nvicStructure.NVIC_IRQChannelPreemptionPriority = 1;
+	nvicStructure.NVIC_IRQChannelSubPriority = 1;
 	nvicStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&nvicStructure);
 	
@@ -222,23 +227,16 @@ bool buttonReleased = true;
 uint32_t offset = 0;
 uint32_t elapsed = 0;
 void loop() {
-	if(!buttonReleased && !read(GPIOA->IDR, pin0)){
-		buttonReleased = true;
-		delay(200);
-	}
 	
-	if(buttonReleased && read(GPIOA->IDR, pin0)) {
-		GPIO_ToggleBits(GPIOD, pin14);
-		buttonReleased = false;
-		delay(200);
-	}
-	elapsed = elapsedTime(offset, seconds);
+	elapsed = elapsedTime(0, microseconds);
 //	msg[0] = '\0';
-	if(elapsed != 0){
-//		sprintf(msg, "%i elapsed %i offset\n", elapsed, offset);
-		offset += elapsed;
+	
+	if(elapsed - offset > 0){
+		sprintf(msg, "%i passed\n", elapsed);
+		usart_puts(USART2, msg);
+		offset = elapsed;
 	}
-	usart_puts(USART2, msg);
+//	usart_puts(USART2, msg);
 	
 	
 }
