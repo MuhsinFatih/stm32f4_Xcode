@@ -7,6 +7,10 @@
 #define false	0
 
 #define read(idr,pin) (idr & pin)
+#define REP(size) for(size_t i=0, length=size; i<length; ++i)
+#define REPW(size)  size_t w,length; length=size; while(w<length)
+
+#define setup main	// i like simplicity :D
 
 #ifndef BAUDRATE
 	#define BAUDRATE 230400 
@@ -20,24 +24,28 @@
 
 void loop();
 
+static char msg[255];
 
+// MARK: timer
+
+// microsecond resolution
+void setSysTick() {
+	if (SysTick_Config(SystemCoreClock / 1000000))	usart_puts(USART2, "error in setSysTick()");
+}
 void enableSysTick() {
 	SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk; // enable
 }
-
 void disableSysTick() {
 	SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk; // disable
 }
-
 volatile uint32_t ticks;
+static bool asyncTimerOn = false;
 void SysTick_Handler() {
 	++ticks;
 }
 
-static bool asyncTimerOn = false;
-
-// (happens every 1ms)
-static void delay(__IO uint32_t milliseconds) {
+// MARK: delay
+static void delay_ms(__IO uint32_t milliseconds) { // millisecond
 	uint32_t microseconds = 0;
 	if(!asyncTimerOn) ticks = 0; // make sure we don't run out of 32 bits at random times
 	else microseconds += ticks;
@@ -46,8 +54,6 @@ static void delay(__IO uint32_t milliseconds) {
 	while (ticks < microseconds);
 	disableSysTick();
 }
-
-// (happens every 1microseconds)
 static void delay_micro(__IO uint32_t microseconds) {
 	if(!asyncTimerOn) ticks = 0; // make sure we don't run out of 32 bits at random times
 	else microseconds += ticks;
@@ -62,7 +68,7 @@ typedef enum timeinterval{
 	microseconds = 1, milliseconds = 1000, seconds = 1000000
 } timeinterval;
 
-
+// MARK: async stopwatch
 // aslında daha iyi bir fikrim var: startAsyncTimer a her sayaç için özel elapsedTime değişkeni yapalım, startAsyncTimer fonksiyonuda bu değişkenlerin
 // hepsinin pointer ını depolasın ve yeni timer gelince bütün timerların elapsedTime'ları geçen süre kadar artırılsın. Tabi bu iş için C++ la compile
 // etmeyi halledersem çok güzel olur :)
@@ -73,11 +79,7 @@ static uint32_t startAsyncStopwatch() {
 	enableSysTick();
 	return 0; // 0 elapsed
 }
-
 #define stopAsyncTimer disableSysTick();
-
-static char msg[255];
-
 static uint32_t elapsedTime(uint32_t offset, timeinterval interval){
 	int ret = floor(ticks / interval);
 //	sprintf(msg, "%u ticks %i interval %i ticks/interval %u offset\n", ticks, interval, ret, offset);
@@ -85,13 +87,6 @@ static uint32_t elapsedTime(uint32_t offset, timeinterval interval){
 	return ret - offset;
 }
 
-// microsecond resolution
-void setSysTick() {
-	if (SysTick_Config(SystemCoreClock / 1000000)) {
-		// capture error
-		while(1);
-	}
-}
 
 void gpio(GPIO_TypeDef* GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_TypeDef PuPd) {
 	GPIO_InitTypeDef initStructure;
@@ -104,19 +99,20 @@ void gpio(GPIO_TypeDef* GPIOx, uint32_t pin, GPIOMode_TypeDef mode, GPIOPuPd_Typ
 	GPIO_Init(GPIOx, &initStructure);
 }
 
-void setup_Periph() {
+// MARK: usart setup //TODO: fix rx, tx params. currently stm picks one magically for rx and tx
+void setup_USART(int rx, int tx) {
 	GPIO_InitTypeDef gpioStructure;
 	USART_InitTypeDef usartStructure;
 	NVIC_InitTypeDef nvicStructure;
 	
-	
+	int pins[2] = {pow(rx, 2),pow(tx, 2)};
 	// Enable the periph clock for usart1
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
 	// Enable the GPIOA clock
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
 	
 	// Setup the gpio pins for Tx and Rx
-	gpioStructure.GPIO_Pin = pin2 | pin3;
+	gpioStructure.GPIO_Pin = pins[0] | pins[1];
 	gpioStructure.GPIO_Mode = GPIO_Mode_AF;
 	gpioStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	gpioStructure.GPIO_OType = GPIO_OType_PP;
@@ -124,8 +120,8 @@ void setup_Periph() {
 	
 	GPIO_Init(GPIOA, &gpioStructure);
 	
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource2, GPIO_AF_USART2);
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource3, GPIO_AF_USART2);
+	GPIO_PinAFConfig(GPIOA, rx, GPIO_AF_USART2);
+	GPIO_PinAFConfig(GPIOA, tx, GPIO_AF_USART2);
 	
 	usartStructure.USART_BaudRate = BAUDRATE;
 	usartStructure.USART_WordLength = USART_WordLength_8b;
@@ -149,7 +145,6 @@ void setup_Periph() {
 	
 	
 }
-
 void usart_puts(USART_TypeDef *USARTx, volatile char *str) {
 	while(*str) {
 //		while(!(USARTx->SR & 0x040)); // get 6'th bit
@@ -160,6 +155,8 @@ void usart_puts(USART_TypeDef *USARTx, volatile char *str) {
 	}
 }
 
+
+// MARK: button click with interrupt
 int btnOffset = 0;
 int btnElapsed = 0;
 void EXTI0_IRQHandler() {
@@ -174,21 +171,7 @@ void EXTI0_IRQHandler() {
 	}
 	EXTI_ClearITPendingBit(EXTI_Line0); // Clear the flag
 }
-
-int main() {
-	setSysTick();
-	
-	// enable GPIOx clock
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-	gpio(GPIOD, pin12 | pin13 | pin14 | pin15,
-		 OUTPUT, NOPULL);
-	gpio(GPIOA, pin0,
-		 INPUT, GPIO_PuPd_DOWN);
-	
-	
-	GPIO_SetBits(GPIOD, pin14);
-	
+void setup_button() {
 	
 	// connect exti0 to gpioA. Since it is exti0 the interrupt will use pin0
 	SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOA, EXTI_PinSource0 /*exti0*/ );
@@ -214,8 +197,30 @@ int main() {
 	nvicStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&nvicStructure);
 	
+	
 
-	setup_Periph();
+}
+
+
+
+
+// setup
+int setup() {
+	setup_USART(2,3);
+	setSysTick();
+	setup_button();
+	
+	// enable GPIOx clock
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
+	
+	gpio(GPIOD, (pin12 | pin13 | pin14 | pin15) , OUTPUT, NOPULL);
+	gpio(GPIOA, pin0, INPUT, GPIO_PuPd_DOWN);
+	
+	GPIO_SetBits(GPIOD, pin12); // indicate stm's working fine
+//	GPIO_SetBits(GPIOD, pin14);
+	
 	usart_puts(USART2, "hello world!\n");
 	startAsyncStopwatch();
 	
