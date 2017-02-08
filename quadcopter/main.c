@@ -202,7 +202,37 @@ void setup_button() {
 }
 
 
+/**
+ setup pwm
 
+ @param pins numbers. not pinx notation. eg: {1,2,3,4}
+ @param numOfPins size of the pins array
+ */
+void setupPWM(GPIO_TypeDef *GPIOx, int *pins, int numOfPins) {
+	GPIO_InitTypeDef			gpioStructure;
+	TIM_TimeBaseInitTypeDef		timeBaseStructure;
+	TIM_OCInitTypeDef			outputControlStrucure;
+	
+	// enable timer 4
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
+	
+	uint32_t gpioPins;
+	REP(numOfPins) gpioPins |= (uint32_t)pow(pins[i],2);
+	
+	
+	gpioStructure.GPIO_Pin = gpioPins;
+	gpioStructure.GPIO_Mode = GPIO_Mode_AF;
+	gpioStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	gpioStructure.GPIO_OType = GPIO_OType_PP;
+	gpioStructure.GPIO_PuPd = GPIO_PuPd_UP;
+	GPIO_Init(GPIOx, &gpioStructure);
+	
+	
+	// assign alternate function
+	GPIO_PinAFConfig(GPIOB, pins[0], GPIO_AF_TIM4);
+	GPIO_PinAFConfig(GPIOB, pins[1], GPIO_AF_TIM4);
+	
+}
 
 // setup
 int setup() {
