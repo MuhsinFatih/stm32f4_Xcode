@@ -1,8 +1,11 @@
 # STM32F4-Discovery Makefile for Mac OSX
 
-BAUDRATE=230400
+SRCS=$(wildcard *.c)
 
-SRCS=$(wildcard *.c) 
+CPPFILES = $(wildcard *.cpp)
+CFILES = $(wildcard *.c)
+
+
 # Add assembly source files here or use $(wildcard *.s) for all .s files
 S_SRCS = CortexM4asmOps.s
 
@@ -15,6 +18,13 @@ OUTPATH := $(abspath $(OUTPATH))
 BASEDIR := $(abspath ./)
 MKDIR_P = mkdir -p
 
+CWD = $(shell pwd)
+CPPOBJECTS = $(addprefix $(OUTPATH)/, $(notdir $(addsuffix .o, $(CPPFILES))))
+COBJECTS = $(addprefix $(OUTPATH)/, $(notdir $(addsuffix .o, $(CFILES))))
+
+
+OBJECTS += $(CPPOBJECTS)
+OBJECTS += $(COBJECTS)
 
 ###################################################
 
@@ -33,6 +43,7 @@ endif
 
 AS=$(BINPATH)arm-none-eabi-as
 CC=$(BINPATH)arm-none-eabi-gcc
+CP=$(BINPATH)arm-none-eabi-g++
 LD=$(BINPATH)arm-none-eabi-gcc
 OBJCOPY=$(BINPATH)arm-none-eabi-objcopy
 OBJDUMP=$(BINPATH)arm-none-eabi-objdump
@@ -42,7 +53,7 @@ LINKER_SCRIPT = stm32_flash.ld
 
 CPU = -mcpu=cortex-m4 -mthumb
 
-CFLAGS  = $(CPU) -c -std=gnu99 -g -O2 -Wall -D BAUDRATE=$(BAUDRATE)
+CFLAGS  = $(CPU) -c -std=gnu99 -g -O2 -Wall
 LDFLAGS  = $(CPU) -mlittle-endian -mthumb-interwork -nostartfiles -Wl,--gc-sections,-Map=$(OUTPATH)/$(PROJ_NAME).map,--cref --specs=nano.specs
 
 ifeq ($(FLOAT_TYPE), hard)
@@ -71,7 +82,7 @@ INCLUDE_PATHS += -I$(BASEDIR)/lib/STM32F4xx_StdPeriph_Driver/inc
 LIBPATHS = -L$(BASEDIR)/lib/STM32F4xx_StdPeriph_Driver
 
 # Libraries to link
-LIBS = -lstdperiph -lc -lgcc -lnosys -lm
+LIBS = -lstdperiph -lc -lgcc -lnosys
 
 OBJS = $(SRCS:.c=.o)
 OBJS += $(S_SRCS:.s=.o)
@@ -81,6 +92,7 @@ OBJS += $(S_SRCS:.s=.o)
 .PHONY: lib proj
 
 all: dir lib proj
+	echo $(OBJECTS)
 	$(SIZE) $(OUTPATH)/$(PROJ_NAME).elf
 
 lib:
@@ -88,14 +100,18 @@ lib:
 
 proj: $(OUTPATH)/$(PROJ_NAME).elf
 
-.s.o:
-	$(AS) $(CPU) -o $(addprefix $(OUTPATH)/, $@) $<
 
-.c.o:
-	$(CC) $(CFLAGS) -std=gnu99 $(INCLUDE_PATHS) -o $(addprefix  $(OUTPATH)/, $@) $<
+$(OBJECTS):$(OUTPATH)/%.cpp.o: %.cpp
+	@echo "(CP) $(notdir $<)"
+	$(CP) $(CFLAGS) -std=gnu99 $(INCLUDE_PATHS) -o  $(OUTPATH) $<
 
-$(OUTPATH)/$(PROJ_NAME).elf: $(OBJS)
-	$(LD) $(LDFLAGS) -T$(LINKER_SCRIPT) $(LIBPATHS) -o $@ $(addprefix $(OUTPATH)/, $^) $(LIBS) $(LD_SYS_LIBS)
+$(OBJECTS): $(OUTPATH)/%.c.o: %.c
+	@echo "(CC)  $(notdir $<)"
+	$(CC) $(CFLAGS) -std=gnu99 $(INCLUDE_PATHS) -o $@ $<
+
+$(OUTPATH)/$(PROJ_NAME).elf: $(OBJECTS)
+	$(AS) $(CPU) -o $(OUTPATH)/CortexM4asmOps.o CortexM4asmOps.s
+	$(LD) $(LDFLAGS) -T$(LINKER_SCRIPT) $(LIBPATHS) -o $@  $^ $(LIBS) $(LD_SYS_LIBS)
 	$(OBJCOPY) -O ihex $(OUTPATH)/$(PROJ_NAME).elf $(OUTPATH)/$(PROJ_NAME).hex
 	$(OBJCOPY) -O binary $(OUTPATH)/$(PROJ_NAME).elf $(OUTPATH)/$(PROJ_NAME).bin
 	$(OBJDUMP) -S --disassemble $(OUTPATH)/$(PROJ_NAME).elf > $(OUTPATH)/$(PROJ_NAME).dis
@@ -115,5 +131,4 @@ clean:
 
 flash:
 	/usr/local/bin/st-flash write $(shell pwd)/build/$(PROJ_NAME).bin 0x08000000
-#TERM='vt100'	screen /dev/cu.usbmodem1411 $(BAUDRATE)
-	
+
