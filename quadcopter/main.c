@@ -7,6 +7,7 @@
 #define false	0
 
 #define read(idr,pin) (idr & pin)
+#define enableFloatingPoint() (*((int*)0xE000ED88))|=0x0F00000;  // Floating Point donanimini aktiflestir.
 #define REP(size) for(size_t i=0, length=size; i<length; ++i)
 #define REPW(size)  size_t w,length; length=size; while(w<length)
 
@@ -281,8 +282,28 @@ void setupPWM(GPIO_TypeDef *GPIOx, int *pins, int numOfPins) {
 	
 }
 
+/**
+ * @brief  friendly function to get the period value to pass to timers
+ * @param  realPeriod: period in means of real life measurements. like 1 is actually 1 second
+ * @param  frequency: 1/realPeriod obviously. If you want to use this then set realPeriod to 0. or set this to 0 likewise
+ * @retval period value to pass into your timer
+ */
+uint16_t getPeriod(double realPeriod, double frequency, uint32_t clockSpeed , uint16_t prescaler) {
+	uint16_t period;
+	
+	if(frequency == 0) {
+		period = realPeriod * clockSpeed / prescaler;
+	} else if(realPeriod == 0) {
+		period = clockSpeed / (prescaler * frequency);
+	} else {
+		// throw error
+	}
+	return period;
+}
+
 // setup
 int setup() {
+	enableFloatingPoint();
 	setSysTick();
 	setup_button();
 	int pwmpins[] = {6,7};
@@ -307,6 +328,8 @@ int setup() {
 	return 0;
 }
 
+uint16_t prescaler = 8400;
+double frequency = 50;
 
 bool buttonReleased = true;
 uint32_t offset = 0;
@@ -323,6 +346,7 @@ void loop() {
 	}
 //	usart_puts(USART2, msg);
 	
+	uint32_t period = getPeriod(0, frequency, 84 * 1000000, prescaler);
 	
 	TIM4->CCR1 = 600;
 	TIM4->CCR2 = 600;
