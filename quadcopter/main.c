@@ -22,6 +22,8 @@
 #include <stdbool.h>
 #include "def.h"
 #include <math.h>
+#include <stdlib.h>
+
 
 void loop();
 
@@ -373,29 +375,27 @@ void loop() {
 	}
 //	usart_puts(USART2, msg);
 	
-	uint32_t period = getPeriod(0, frequency, 84 * 1000000, prescaler);
-	for(int i=900; i<2000; ++i) {
-		TIM4->CCR1 = i;
-		TIM4->CCR2 = i;
-		delay_micro(4000);
-		char qwe[20];
-		sprintf(qwe,"%i\n", i);
-		usart_puts(USART2,qwe);
-		
-	}
-	TIM4->CCR1 = 19999;
-	TIM4->CCR2 = 19999;
-	delay(30*1000);
-//	TIM4->CCR1 = 1500;
-//	TIM4->CCR2 = 1500;
-//	delay(700);
-//	usart_puts(USART2,"700 ms\n");
-//	
-//	TIM4->CCR1 = 2100;
-//	TIM4->CCR2 = 2100;
-//	delay(700);
-//	usart_puts(USART2,"700 ms\n");
+//	uint32_t period = getPeriod(0, frequency, 84 * 1000000, prescaler);
+
 	
+//	for(int i=900; i<2000; ++i) {
+//		TIM4->CCR1 = i;
+//		TIM4->CCR2 = i;
+//		delay_micro(4000);
+//		char qwe[20];
+//		sprintf(qwe,"%i\n", i);
+//		usart_puts(USART2,qwe);
+//		
+//	}
+//	TIM4->CCR1 = 19999;
+//	TIM4->CCR2 = 19999;
+//	delay(30*1000);
+	char* in;
+	
+	if (newDataIn) {
+//		TIM4->CCR1 = atoi(readUsart());
+		TIM4->CCR2 = atoi(readUsart());
+	}
 }
 
 
