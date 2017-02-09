@@ -8,3 +8,12 @@
 
 #include "test.hpp"
 
+class asdf {
+	
+};
+
+void cpp_main() {
+	asdf asdf1 = asdf();
+	
+	GPIO_SetBits(GPIOD, pin15);
+}

@@ -112,6 +112,7 @@ void EXTI0_IRQHandler() {
 }
 
 int main() {
+	cpp_main();
 	setSysTick();
 
 	// enable GPIOx clock
