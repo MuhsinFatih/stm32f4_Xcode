@@ -45,12 +45,12 @@ void SysTick_Handler() {
 }
 
 // MARK: delay
-static void delay_ms(__IO uint32_t milliseconds) { // millisecond
+static void delay(__IO uint32_t milliseconds) { // millisecond
 	uint32_t microseconds = 0;
 	if(!asyncTimerOn) ticks = 0; // make sure we don't run out of 32 bits at random times
 	else microseconds += ticks;
 	enableSysTick(); // start as soon as possible
-	microseconds += milliseconds * 10; //clarity
+	microseconds += milliseconds * 1000; //clarity
 	while (ticks < microseconds);
 	disableSysTick();
 }
@@ -105,7 +105,7 @@ void setup_USART(int rx, int tx) {
 	USART_InitTypeDef usartStructure;
 	NVIC_InitTypeDef nvicStructure;
 	
-	int pins[2] = {pow(rx, 2),pow(tx, 2)};
+	int pins[2] = {pow(2,rx),pow(2,tx)};
 	// Enable the periph clock for usart1
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
 	// Enable the GPIOA clock
@@ -201,7 +201,19 @@ void setup_button() {
 
 }
 
-
+const char *byte_to_binary(int x)
+{
+	static char b[9];
+	b[0] = '\0';
+	
+	int z;
+	for (z = 128; z > 0; z >>= 1)
+	{
+		strcat(b, ((x & z) == z) ? "1" : "0");
+	}
+	
+	return b;
+}
 /**
  setup pwm
 
@@ -216,9 +228,13 @@ void setupPWM(GPIO_TypeDef *GPIOx, int *pins, int numOfPins) {
 	// enable timer 4
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
 	
-	uint32_t gpioPins;
-	REP(numOfPins) gpioPins |= (uint32_t)pow(pins[i],2);
-	
+	char asdf[50];
+	uint32_t gpioPins = 0;
+	REP(numOfPins){
+		gpioPins |= (uint32_t)pow(2,pins[i]);
+		sprintf(asdf,"gpioPins= %s\n", byte_to_binary(gpioPins));
+		usart_puts(USART2,asdf);
+	}
 	
 	gpioStructure.GPIO_Pin = gpioPins;
 	gpioStructure.GPIO_Mode = GPIO_Mode_AF;
@@ -229,21 +245,54 @@ void setupPWM(GPIO_TypeDef *GPIOx, int *pins, int numOfPins) {
 	
 	
 	// assign alternate function
-	GPIO_PinAFConfig(GPIOB, pins[0], GPIO_AF_TIM4);
-	GPIO_PinAFConfig(GPIOB, pins[1], GPIO_AF_TIM4);
+	GPIO_PinAFConfig(GPIOx, GPIO_PinSource6, GPIO_AF_TIM4);
+	GPIO_PinAFConfig(GPIOx, GPIO_PinSource7, GPIO_AF_TIM4);
+	
+	
+	uint16_t prescaler = (uint16_t)84;
+	
+	timeBaseStructure.TIM_Period		= 19999;
+	timeBaseStructure.TIM_Prescaler		= prescaler;
+	timeBaseStructure.TIM_ClockDivision	= 0;
+	timeBaseStructure.TIM_CounterMode	= TIM_CounterMode_Up;	// count 0 -> cnt
+	
+	TIM_TimeBaseInit(TIM4, &timeBaseStructure);
+	
+	// common timer settings
+	// pwm mode 1: set on compare match
+	// pwm mode 2: clear on compare match
+	outputControlStrucure.TIM_OCMode		= TIM_OCMode_PWM1;
+	outputControlStrucure.TIM_OutputState	= TIM_OutputState_Enable;
+	outputControlStrucure.TIM_Pulse			= 0;
+	outputControlStrucure.TIM_OCPolarity	= TIM_OCPolarity_High;
+	
+	TIM_OC1Init(TIM4, &outputControlStrucure);
+	TIM_OC1PreloadConfig(TIM4, TIM_OCPreload_Enable);
+	
+	TIM_OC2Init(TIM4, &outputControlStrucure);
+	TIM_OC2PreloadConfig(TIM4, TIM_OCPreload_Enable);
+	
+	TIM_ARRPreloadConfig(TIM4, ENABLE);
+	
+	TIM_Cmd(TIM4, ENABLE);
+	
+	
+	
 	
 }
 
 // setup
 int setup() {
-	setup_USART(2,3);
 	setSysTick();
 	setup_button();
-	
+	int pwmpins[] = {6,7};
 	// enable GPIOx clock
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
+	
+	setup_USART(2,3);
+	setupPWM(GPIOB, pwmpins, 2);
 	
 	gpio(GPIOD, (pin12 | pin13 | pin14 | pin15) , OUTPUT, NOPULL);
 	gpio(GPIOA, pin0, INPUT, GPIO_PuPd_DOWN);
@@ -258,12 +307,13 @@ int setup() {
 	return 0;
 }
 
+
 bool buttonReleased = true;
 uint32_t offset = 0;
 uint32_t elapsed = 0;
 void loop() {
 	
-	elapsed = elapsedTime(0, microseconds);
+	elapsed = elapsedTime(0, seconds);
 //	msg[0] = '\0';
 	
 	if(elapsed - offset > 0){
@@ -273,6 +323,21 @@ void loop() {
 	}
 //	usart_puts(USART2, msg);
 	
+	
+	TIM4->CCR1 = 600;
+	TIM4->CCR2 = 600;
+	delay(700);
+	usart_puts(USART2,"700 ms\n");
+	
+	TIM4->CCR1 = 1500;
+	TIM4->CCR2 = 1500;
+	delay(700);
+	usart_puts(USART2,"700 ms\n");
+	
+	TIM4->CCR1 = 2100;
+	TIM4->CCR2 = 2100;
+	delay(700);
+	usart_puts(USART2,"700 ms\n");
 	
 }
 
