@@ -155,7 +155,34 @@ void usart_puts(USART_TypeDef *USARTx, volatile char *str) {
 		*str++;
 	}
 }
-
+//MARK: read usart input
+#define MAX_WORDLEN		255
+volatile char receivedStr[MAX_WORDLEN + 1];
+volatile bool newDataIn = false;
+extern void usart_puts(USART_TypeDef *USARTx, volatile char *str);
+// Interrupt request handler for all usart2 interrupts
+// This interrupt handler will be executed each time a char is received in usart2
+void USART2_IRQHandler(){
+	// make sure it was usart2 and we didnt screw up things
+	if(USART_GetITStatus(USART2, USART_IT_RXNE)){
+		static int count = 0;
+		char ch = USART2->DR;
+		if((ch != '\n') && (count < MAX_WORDLEN)){
+			receivedStr[count++] = ch;
+		} else {
+			receivedStr[count] = '\n';
+			count = 0;
+			newDataIn = true;
+			usart_puts(USART2, receivedStr);
+		}
+	}
+	
+}
+// return volatile.. http://stackoverflow.com/questions/24515505/assignment-discards-volatile-qualifier-from-pointer-target-type
+volatile char* readUsart() {
+	newDataIn = false;
+	return receivedStr;
+}
 
 // MARK: button click with interrupt
 int btnOffset = 0;
@@ -347,21 +374,27 @@ void loop() {
 //	usart_puts(USART2, msg);
 	
 	uint32_t period = getPeriod(0, frequency, 84 * 1000000, prescaler);
-	
-	TIM4->CCR1 = 600;
-	TIM4->CCR2 = 600;
-	delay(700);
-	usart_puts(USART2,"700 ms\n");
-	
-	TIM4->CCR1 = 1500;
-	TIM4->CCR2 = 1500;
-	delay(700);
-	usart_puts(USART2,"700 ms\n");
-	
-	TIM4->CCR1 = 2100;
-	TIM4->CCR2 = 2100;
-	delay(700);
-	usart_puts(USART2,"700 ms\n");
+	for(int i=900; i<2000; ++i) {
+		TIM4->CCR1 = i;
+		TIM4->CCR2 = i;
+		delay_micro(4000);
+		char qwe[20];
+		sprintf(qwe,"%i\n", i);
+		usart_puts(USART2,qwe);
+		
+	}
+	TIM4->CCR1 = 19999;
+	TIM4->CCR2 = 19999;
+	delay(30*1000);
+//	TIM4->CCR1 = 1500;
+//	TIM4->CCR2 = 1500;
+//	delay(700);
+//	usart_puts(USART2,"700 ms\n");
+//	
+//	TIM4->CCR1 = 2100;
+//	TIM4->CCR2 = 2100;
+//	delay(700);
+//	usart_puts(USART2,"700 ms\n");
 	
 }
 
