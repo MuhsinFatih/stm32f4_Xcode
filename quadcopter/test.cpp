@@ -15,5 +15,5 @@ class asdf {
 void cpp_main() {
 	asdf asdf1 = asdf();
 	
-	GPIO_SetBits(GPIOD, pin15);
+//	GPIO_SetBits(GPIOD, pin15);
 }

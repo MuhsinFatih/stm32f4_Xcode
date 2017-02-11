@@ -82,7 +82,7 @@ INCLUDE_PATHS += -I$(BASEDIR)/lib/STM32F4xx_StdPeriph_Driver/inc
 LIBPATHS = -L$(BASEDIR)/lib/STM32F4xx_StdPeriph_Driver
 
 # Libraries to link
-LIBS = -lstdperiph -lc -lgcc -lnosys
+LIBS = -lstdperiph -lc -lgcc -lnosys -lm
 
 OBJS = $(SRCS:.c=.o)
 OBJS += $(S_SRCS:.s=.o)
