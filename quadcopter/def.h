@@ -28,5 +28,4 @@
 #define pinAll		GPIO_Pin_All  /* All pins selected */
 
 
-
 #endif /* def_h */

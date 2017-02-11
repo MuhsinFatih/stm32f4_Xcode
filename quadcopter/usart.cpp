@@ -9,7 +9,16 @@
 #include "usart.hpp"
 
 
-// MARK: usart setup //TODO: fix rx, tx params. currently stm picks one magically for rx and tx
+usart::usart(int rx, int tx) {
+	
+}
+
+int usart::printf(const char *, ...) {
+	
+}
+
+// MARK: usart setup
+//FIXME: fix rx, tx params. currently stm picks one magically for rx and tx
 void setup_USART(int rx, int tx) {
 	GPIO_InitTypeDef gpioStructure;
 	USART_InitTypeDef usartStructure;

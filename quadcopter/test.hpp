@@ -6,9 +6,14 @@
 //  Copyright © 2017 mekatrotekno. All rights reserved.
 //
 
-#ifndef test_hpp
-#define test_hpp
-
+#pragma once
 #include <stdio.h>
+#ifdef __cplusplus
+extern "C" {
+#include "usart.hpp"
+#endif
 
-#endif /* test_hpp */
+	void cpp_main();
+#ifdef __cplusplus
+}
+#endif

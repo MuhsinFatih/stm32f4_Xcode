@@ -14,6 +14,8 @@ class asdf {
 
 void cpp_main() {
 	asdf asdf1 = asdf();
-	
+	usart a(2,3);
+	printf("");
+	a.printf("Deneme");
 //	GPIO_SetBits(GPIOD, pin15);
 }

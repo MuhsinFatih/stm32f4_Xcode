@@ -23,17 +23,18 @@
 #include "def.h"
 #include <math.h>
 #include <stdlib.h>
-
+#include "test.hpp"
 
 void loop();
 
 static char msg[255];
 
 // MARK: timer
-
 // microsecond resolution
 void setSysTick() {
-	if (SysTick_Config(SystemCoreClock / 1000000))	usart_puts(USART2, "error in setSysTick()");
+	if (SysTick_Config(SystemCoreClock / 1000000)) {
+		//usart_puts(USART2, "error in setSysTick()");
+	}
 }
 void enableSysTick() {
 	SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk; // enable
@@ -112,7 +113,7 @@ void EXTI0_IRQHandler() {
 	
 	if (EXTI_GetITStatus(EXTI_Line0) && btnElapsed - btnOffset > 300) {
 		btnOffset = btnElapsed;
-		usart_puts(USART2, "you pressed the button\n");
+//		usart_puts(USART2, "you pressed the button\n");
 		GPIO_ToggleBits(GPIOD, pin14);
 //		delay(200);
 		
@@ -182,7 +183,7 @@ void setupPWM(GPIO_TypeDef *GPIOx, int *pins, int numOfPins) {
 	REP(numOfPins){
 		gpioPins |= (uint32_t)pow(2,pins[i]);
 		sprintf(asdf,"gpioPins= %s\n", byte_to_binary(gpioPins));
-		usart_puts(USART2,asdf);
+//		usart_puts(USART2,asdf);
 	}
 	
 	gpioStructure.GPIO_Pin = gpioPins;
@@ -251,6 +252,7 @@ uint16_t getPeriod(double realPeriod, double frequency, uint32_t clockSpeed , ui
 
 // setup
 int setup() {
+	
 	enableFloatingPoint();
 	setSysTick();
 	setup_button();
@@ -260,7 +262,7 @@ int setup() {
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
 	
-	setup_USART(2,3);
+//	setup_USART(2,3);
 	setupPWM(GPIOB, pwmpins, 2);
 	
 	gpio(GPIOD, (pin12 | pin13 | pin14 | pin15) , OUTPUT, NOPULL);
@@ -269,9 +271,9 @@ int setup() {
 	GPIO_SetBits(GPIOD, pin12); // indicate stm's working fine
 //	GPIO_SetBits(GPIOD, pin14);
 	
-	usart_puts(USART2, "hello world!\n");
+//	usart_puts(USART2, "hello world!\n");
 	startAsyncStopwatch();
-	
+	cpp_main();
 	while(true) loop();
 	return 0;
 }
@@ -289,14 +291,14 @@ void loop() {
 		GPIO_ToggleBits(GPIOD, pin15);
 	}
 	
-	elapsed = elapsedTime(0, seconds);
-//	msg[0] = '\0';
-	
-	if(elapsed - offset > 0){
-		sprintf(msg, "%i passed\n", elapsed);
-		usart_puts(USART2, msg);
-		offset = elapsed;
-	}
+//	elapsed = elapsedTime(0, seconds);
+////	msg[0] = '\0';
+//	
+//	if(elapsed - offset > 0){
+//		sprintf(msg, "%i passed\n", elapsed);
+//		usart_puts(USART2, msg);
+//		offset = elapsed;
+//	}
 //	usart_puts(USART2, msg);
 	
 //	uint32_t period = getPeriod(0, frequency, 84 * 1000000, prescaler);
@@ -314,12 +316,12 @@ void loop() {
 //	TIM4->CCR1 = 19999;
 //	TIM4->CCR2 = 19999;
 //	delay(30*1000);
-	char* in;
-	
-	if (newDataIn) {
-//		TIM4->CCR1 = atoi(readUsart());
-		TIM4->CCR2 = atoi(readUsart());
-	}
+//	char* in;
+//	
+//	if (newDataIn) {
+////		TIM4->CCR1 = atoi(readUsart());
+//		TIM4->CCR2 = atoi(readUsart());
+//	}
 }
 
 

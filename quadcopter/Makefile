@@ -1,10 +1,11 @@
 # STM32F4-Discovery Makefile for Mac OSX
+SHELL:=/bin/bash
 
 SRCS=$(wildcard *.c)
 
 CPPFILES = $(wildcard *.cpp)
 CFILES = $(wildcard *.c)
-
+BAUDRATE = 115200
 
 # Add assembly source files here or use $(wildcard *.s) for all .s files
 S_SRCS = CortexM4asmOps.s
@@ -44,7 +45,7 @@ endif
 AS=$(BINPATH)arm-none-eabi-as
 CC=$(BINPATH)arm-none-eabi-gcc
 CP=$(BINPATH)arm-none-eabi-g++
-LD=$(BINPATH)arm-none-eabi-gcc
+LD=$(BINPATH)arm-none-eabi-g++
 OBJCOPY=$(BINPATH)arm-none-eabi-objcopy
 OBJDUMP=$(BINPATH)arm-none-eabi-objdump
 SIZE=$(BINPATH)arm-none-eabi-size
@@ -68,7 +69,7 @@ ifeq ($(DEVICE_DEF), )
 DEVICE_DEF = STM32F40_41xxx
 endif
 
-CFLAGS += -D$(DEVICE_DEF)
+CFLAGS += -D$(DEVICE_DEF) -DBAUDRATE=$(BAUDRATE)
 
 vpath %.a lib
 
@@ -92,8 +93,9 @@ OBJS += $(S_SRCS:.s=.o)
 .PHONY: lib proj
 
 all: dir lib proj
-	echo $(OBJECTS)
-	$(SIZE) $(OUTPATH)/$(PROJ_NAME).elf
+	TAGS="TODO:|FIXME:"
+	./todo.sh
+	#$(SIZE) $(OUTPATH)/$(PROJ_NAME).elf
 
 lib:
 	$(MAKE) -C lib FLOAT_TYPE=$(FLOAT_TYPE) BINPATH=$(BINPATH) DEVICE_DEF=$(DEVICE_DEF) BASEDIR=$(BASEDIR)
@@ -101,7 +103,7 @@ lib:
 proj: $(OUTPATH)/$(PROJ_NAME).elf
 
 
-$(OBJECTS):$(OUTPATH)/%.cpp.o: %.cpp
+$(OBJECTS): $(OUTPATH)/%.cpp.o: %.cpp
 	@echo "(CP) $(notdir $<)"
 	$(CP) $(CFLAGS) -std=gnu99 $(INCLUDE_PATHS) -o  $(OUTPATH) $<
 
