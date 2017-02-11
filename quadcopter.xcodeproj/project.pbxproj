@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		4EC3EB8F1E4F53D600DC4DA1 /* usart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EC3EB8D1E4F53D600DC4DA1 /* usart.cpp */; };
 		4EF566DD1E3FC78700CDE8E4 /* CortexM4asmOps.s in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D01E3FC78700CDE8E4 /* CortexM4asmOps.s */; };
-		4EF566DE1E3FC78700CDE8E4 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D21E3FC78700CDE8E4 /* main.c */; };
+		4EF566DE1E3FC78700CDE8E4 /* main.co in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D21E3FC78700CDE8E4 /* main.co */; };
 		4EF566DF1E3FC78700CDE8E4 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D31E3FC78700CDE8E4 /* Makefile */; };
 		4EF566E01E3FC78700CDE8E4 /* startup_stm32f4xx.c in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D51E3FC78700CDE8E4 /* startup_stm32f4xx.c */; };
 		4EF566E11E3FC78700CDE8E4 /* stm32f4_P24_definitions.s in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D71E3FC78700CDE8E4 /* stm32f4_P24_definitions.s */; };
 		4EF566E21E3FC78700CDE8E4 /* stm32f4xx_it.c in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D91E3FC78700CDE8E4 /* stm32f4xx_it.c */; };
 		4EF566E31E3FC78700CDE8E4 /* system_stm32f4xx.c in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566DC1E3FC78700CDE8E4 /* system_stm32f4xx.c */; };
-		D1820E021E47D0E900F5275D /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1820E001E47D0E900F5275D /* test.cpp */; };
+		D1820E021E47D0E900F5275D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1820E001E47D0E900F5275D /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,7 +37,7 @@
 		4EF566C51E3FC77B00CDE8E4 /* quadcopter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = quadcopter; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EF566D01E3FC78700CDE8E4 /* CortexM4asmOps.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = CortexM4asmOps.s; sourceTree = "<group>"; };
 		4EF566D11E3FC78700CDE8E4 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
-		4EF566D21E3FC78700CDE8E4 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		4EF566D21E3FC78700CDE8E4 /* main.co */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.co; sourceTree = "<group>"; };
 		4EF566D31E3FC78700CDE8E4 /* Makefile */ = {isa = PBXFileReference; explicitFileType = text.script.sh; fileEncoding = 4; path = Makefile; sourceTree = "<group>"; usesTabs = 1; };
 		4EF566D41E3FC78700CDE8E4 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		4EF566D51E3FC78700CDE8E4 /* startup_stm32f4xx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = startup_stm32f4xx.c; sourceTree = "<group>"; };
@@ -49,8 +49,8 @@
 		4EF566DB1E3FC78700CDE8E4 /* stm32f4xx-openOCD.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "stm32f4xx-openOCD.cfg"; sourceTree = "<group>"; };
 		4EF566DC1E3FC78700CDE8E4 /* system_stm32f4xx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = system_stm32f4xx.c; sourceTree = "<group>"; };
 		D10365C01E4F5B700023E53C /* todo.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = todo.sh; sourceTree = "<group>"; };
-		D1820E001E47D0E900F5275D /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
-		D1820E011E47D0E900F5275D /* test.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test.hpp; sourceTree = "<group>"; };
+		D1820E001E47D0E900F5275D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D1820E011E47D0E900F5275D /* main.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +85,7 @@
 			children = (
 				4EF566D01E3FC78700CDE8E4 /* CortexM4asmOps.s */,
 				4EF566D11E3FC78700CDE8E4 /* lib */,
-				4EF566D21E3FC78700CDE8E4 /* main.c */,
+				4EF566D21E3FC78700CDE8E4 /* main.co */,
 				D10365C01E4F5B700023E53C /* todo.sh */,
 				4EF566D31E3FC78700CDE8E4 /* Makefile */,
 				4EF566D41E3FC78700CDE8E4 /* README */,
@@ -98,8 +98,8 @@
 				4EF566DB1E3FC78700CDE8E4 /* stm32f4xx-openOCD.cfg */,
 				4EF566DC1E3FC78700CDE8E4 /* system_stm32f4xx.c */,
 				4E8732231E464E4F00FB1087 /* def.h */,
-				D1820E001E47D0E900F5275D /* test.cpp */,
-				D1820E011E47D0E900F5275D /* test.hpp */,
+				D1820E001E47D0E900F5275D /* main.cpp */,
+				D1820E011E47D0E900F5275D /* main.hpp */,
 				4EC3EB8D1E4F53D600DC4DA1 /* usart.cpp */,
 				4EC3EB8E1E4F53D600DC4DA1 /* usart.hpp */,
 			);
@@ -186,11 +186,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EF566E21E3FC78700CDE8E4 /* stm32f4xx_it.c in Sources */,
-				D1820E021E47D0E900F5275D /* test.cpp in Sources */,
+				D1820E021E47D0E900F5275D /* main.cpp in Sources */,
 				4EF566DF1E3FC78700CDE8E4 /* Makefile in Sources */,
 				4EF566E01E3FC78700CDE8E4 /* startup_stm32f4xx.c in Sources */,
 				4EF566E31E3FC78700CDE8E4 /* system_stm32f4xx.c in Sources */,
-				4EF566DE1E3FC78700CDE8E4 /* main.c in Sources */,
+				4EF566DE1E3FC78700CDE8E4 /* main.co in Sources */,
 				4EC3EB8F1E4F53D600DC4DA1 /* usart.cpp in Sources */,
 				4EF566E11E3FC78700CDE8E4 /* stm32f4_P24_definitions.s in Sources */,
 				4EF566DD1E3FC78700CDE8E4 /* CortexM4asmOps.s in Sources */,
