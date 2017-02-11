@@ -22,5 +22,10 @@ class usart {
 	int	 printf(const char * __restrict, ...);
 };
 
-
+extern "C" {
+	void setup_USART(int rx, int tx);
+	void usart_puts(USART_TypeDef *USARTx, volatile char *str);
+	extern void usart_puts(USART_TypeDef *USARTx, volatile char *str);
+	volatile char* readUsart();
+}
 #endif /* usart_hpp */
