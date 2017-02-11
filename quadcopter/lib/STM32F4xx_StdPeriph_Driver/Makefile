@@ -60,5 +60,5 @@ $(LIBNAME): $(OBJS)
 	$(AR) -r $@ $(OBJS)
 
 clean:
-	rm -f $(OBJS) $(LIBNAME)
+#rm -f $(OBJS) $(LIBNAME)
 	
