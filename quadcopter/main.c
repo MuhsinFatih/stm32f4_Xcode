@@ -322,7 +322,6 @@ void loop() {
 ////		TIM4->CCR1 = atoi(readUsart());
 //		TIM4->CCR2 = atoi(readUsart());
 //	}
-	
 }
 
 
