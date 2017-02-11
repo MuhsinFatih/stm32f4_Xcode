@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4EC3EB8F1E4F53D600DC4DA1 /* usart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EC3EB8D1E4F53D600DC4DA1 /* usart.cpp */; };
 		4EF566DD1E3FC78700CDE8E4 /* CortexM4asmOps.s in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D01E3FC78700CDE8E4 /* CortexM4asmOps.s */; };
 		4EF566DE1E3FC78700CDE8E4 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D21E3FC78700CDE8E4 /* main.c */; };
 		4EF566DF1E3FC78700CDE8E4 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D31E3FC78700CDE8E4 /* Makefile */; };
@@ -31,6 +32,8 @@
 
 /* Begin PBXFileReference section */
 		4E8732231E464E4F00FB1087 /* def.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = def.h; sourceTree = "<group>"; };
+		4EC3EB8D1E4F53D600DC4DA1 /* usart.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = usart.cpp; sourceTree = "<group>"; };
+		4EC3EB8E1E4F53D600DC4DA1 /* usart.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = usart.hpp; sourceTree = "<group>"; };
 		4EF566C51E3FC77B00CDE8E4 /* quadcopter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = quadcopter; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EF566D01E3FC78700CDE8E4 /* CortexM4asmOps.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = CortexM4asmOps.s; sourceTree = "<group>"; };
 		4EF566D11E3FC78700CDE8E4 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
@@ -95,6 +98,8 @@
 				4E8732231E464E4F00FB1087 /* def.h */,
 				D1820E001E47D0E900F5275D /* test.cpp */,
 				D1820E011E47D0E900F5275D /* test.hpp */,
+				4EC3EB8D1E4F53D600DC4DA1 /* usart.cpp */,
+				4EC3EB8E1E4F53D600DC4DA1 /* usart.hpp */,
 			);
 			path = quadcopter;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 				4EF566E01E3FC78700CDE8E4 /* startup_stm32f4xx.c in Sources */,
 				4EF566E31E3FC78700CDE8E4 /* system_stm32f4xx.c in Sources */,
 				4EF566DE1E3FC78700CDE8E4 /* main.c in Sources */,
+				4EC3EB8F1E4F53D600DC4DA1 /* usart.cpp in Sources */,
 				4EF566E11E3FC78700CDE8E4 /* stm32f4_P24_definitions.s in Sources */,
 				4EF566DD1E3FC78700CDE8E4 /* CortexM4asmOps.s in Sources */,
 			);
