@@ -83,6 +83,17 @@
 		4EF566C71E3FC77B00CDE8E4 /* quadcopter */ = {
 			isa = PBXGroup;
 			children = (
+				D10365C11E4F80030023E53C /* Others */,
+				D10365C31E4F80200023E53C /* Main */,
+				D10365C21E4F80170023E53C /* Usart */,
+			);
+			path = quadcopter;
+			sourceTree = "<group>";
+		};
+		D10365C11E4F80030023E53C /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				4E8732231E464E4F00FB1087 /* def.h */,
 				4EF566D01E3FC78700CDE8E4 /* CortexM4asmOps.s */,
 				4EF566D11E3FC78700CDE8E4 /* lib */,
 				4EF566D21E3FC78700CDE8E4 /* main.co */,
@@ -97,13 +108,26 @@
 				4EF566DA1E3FC78700CDE8E4 /* stm32f4xx_it.h */,
 				4EF566DB1E3FC78700CDE8E4 /* stm32f4xx-openOCD.cfg */,
 				4EF566DC1E3FC78700CDE8E4 /* system_stm32f4xx.c */,
-				4E8732231E464E4F00FB1087 /* def.h */,
-				D1820E001E47D0E900F5275D /* main.cpp */,
-				D1820E011E47D0E900F5275D /* main.hpp */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
+		D10365C21E4F80170023E53C /* Usart */ = {
+			isa = PBXGroup;
+			children = (
 				4EC3EB8D1E4F53D600DC4DA1 /* usart.cpp */,
 				4EC3EB8E1E4F53D600DC4DA1 /* usart.hpp */,
 			);
-			path = quadcopter;
+			name = Usart;
+			sourceTree = "<group>";
+		};
+		D10365C31E4F80200023E53C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				D1820E001E47D0E900F5275D /* main.cpp */,
+				D1820E011E47D0E900F5275D /* main.hpp */,
+			);
+			name = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
