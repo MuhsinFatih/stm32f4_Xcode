@@ -32,11 +32,13 @@
 
 
 
+
 #ifdef __cplusplus
 
-extern "C" {
 #include "def.h"
 #include "usart.hpp"
+
+extern "C" {
 #endif
 	int main();
 	void cpp_main();
