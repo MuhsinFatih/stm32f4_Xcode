@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4EF566C41E3FC77B00CDE8E4"
-               BuildableName = "quadcopter"
-               BlueprintName = "quadcopter"
-               ReferencedContainer = "container:quadcopter.xcodeproj">
+               BlueprintIdentifier = "4EF566E41E3FC7DA00CDE8E4"
+               BuildableName = "stm32f4xcodeSTM"
+               BlueprintName = "stm32f4xcodeSTM"
+               ReferencedContainer = "container:stm32f4xcode.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,38 +29,39 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4EF566C41E3FC77B00CDE8E4"
-            BuildableName = "quadcopter"
-            BlueprintName = "quadcopter"
-            ReferencedContainer = "container:quadcopter.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
-      useCustomWorkingDirectory = "NO"
+      useCustomWorkingDirectory = "YES"
+      customWorkingDirectory = "$(PROJECT_DIR)/quadcopter"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <PathRunnable
+         runnableDebuggingMode = "0"
+         FilePath = "/usr/bin/make">
+      </PathRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4EF566C41E3FC77B00CDE8E4"
-            BuildableName = "quadcopter"
-            BlueprintName = "quadcopter"
-            ReferencedContainer = "container:quadcopter.xcodeproj">
+            BlueprintIdentifier = "4EF566E41E3FC7DA00CDE8E4"
+            BuildableName = "stm32f4xcodeSTM"
+            BlueprintName = "stm32f4xcodeSTM"
+            ReferencedContainer = "container:stm32f4xcode.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "flash"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,16 +71,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4EF566C41E3FC77B00CDE8E4"
-            BuildableName = "quadcopter"
-            BlueprintName = "quadcopter"
-            ReferencedContainer = "container:quadcopter.xcodeproj">
+            BlueprintIdentifier = "4EF566E41E3FC7DA00CDE8E4"
+            BuildableName = "stm32f4xcodeSTM"
+            BlueprintName = "stm32f4xcodeSTM"
+            ReferencedContainer = "container:stm32f4xcode.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

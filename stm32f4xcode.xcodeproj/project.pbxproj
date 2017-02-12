@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4EC3EB8F1E4F53D600DC4DA1 /* usart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EC3EB8D1E4F53D600DC4DA1 /* usart.cpp */; };
 		4EF566DD1E3FC78700CDE8E4 /* CortexM4asmOps.s in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D01E3FC78700CDE8E4 /* CortexM4asmOps.s */; };
-		4EF566DE1E3FC78700CDE8E4 /* main.co in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D21E3FC78700CDE8E4 /* main.co */; };
 		4EF566DF1E3FC78700CDE8E4 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D31E3FC78700CDE8E4 /* Makefile */; };
 		4EF566E01E3FC78700CDE8E4 /* startup_stm32f4xx.c in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D51E3FC78700CDE8E4 /* startup_stm32f4xx.c */; };
 		4EF566E11E3FC78700CDE8E4 /* stm32f4_P24_definitions.s in Sources */ = {isa = PBXBuildFile; fileRef = 4EF566D71E3FC78700CDE8E4 /* stm32f4_P24_definitions.s */; };
@@ -32,12 +30,9 @@
 
 /* Begin PBXFileReference section */
 		4E8732231E464E4F00FB1087 /* def.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = def.h; sourceTree = "<group>"; };
-		4EC3EB8D1E4F53D600DC4DA1 /* usart.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = usart.cpp; sourceTree = "<group>"; };
-		4EC3EB8E1E4F53D600DC4DA1 /* usart.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = usart.hpp; sourceTree = "<group>"; };
-		4EF566C51E3FC77B00CDE8E4 /* quadcopter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = quadcopter; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EF566C51E3FC77B00CDE8E4 /* stm32f4xcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = stm32f4xcode; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EF566D01E3FC78700CDE8E4 /* CortexM4asmOps.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = CortexM4asmOps.s; sourceTree = "<group>"; };
 		4EF566D11E3FC78700CDE8E4 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
-		4EF566D21E3FC78700CDE8E4 /* main.co */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.co; sourceTree = "<group>"; };
 		4EF566D31E3FC78700CDE8E4 /* Makefile */ = {isa = PBXFileReference; explicitFileType = text.script.sh; fileEncoding = 4; path = Makefile; sourceTree = "<group>"; usesTabs = 1; };
 		4EF566D41E3FC78700CDE8E4 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		4EF566D51E3FC78700CDE8E4 /* startup_stm32f4xx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = startup_stm32f4xx.c; sourceTree = "<group>"; };
@@ -67,7 +62,7 @@
 		4EF566BC1E3FC77B00CDE8E4 = {
 			isa = PBXGroup;
 			children = (
-				4EF566C71E3FC77B00CDE8E4 /* quadcopter */,
+				4EF566C71E3FC77B00CDE8E4 /* stm32f4xcode */,
 				4EF566C61E3FC77B00CDE8E4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,18 +70,18 @@
 		4EF566C61E3FC77B00CDE8E4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4EF566C51E3FC77B00CDE8E4 /* quadcopter */,
+				4EF566C51E3FC77B00CDE8E4 /* stm32f4xcode */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4EF566C71E3FC77B00CDE8E4 /* quadcopter */ = {
+		4EF566C71E3FC77B00CDE8E4 /* stm32f4xcode */ = {
 			isa = PBXGroup;
 			children = (
 				D10365C11E4F80030023E53C /* Others */,
 				D10365C31E4F80200023E53C /* Main */,
-				D10365C21E4F80170023E53C /* Usart */,
 			);
+			name = stm32f4xcode;
 			path = quadcopter;
 			sourceTree = "<group>";
 		};
@@ -96,7 +91,6 @@
 				4E8732231E464E4F00FB1087 /* def.h */,
 				4EF566D01E3FC78700CDE8E4 /* CortexM4asmOps.s */,
 				4EF566D11E3FC78700CDE8E4 /* lib */,
-				4EF566D21E3FC78700CDE8E4 /* main.co */,
 				D10365C01E4F5B700023E53C /* todo.sh */,
 				4EF566D31E3FC78700CDE8E4 /* Makefile */,
 				4EF566D41E3FC78700CDE8E4 /* README */,
@@ -112,15 +106,6 @@
 			name = Others;
 			sourceTree = "<group>";
 		};
-		D10365C21E4F80170023E53C /* Usart */ = {
-			isa = PBXGroup;
-			children = (
-				4EC3EB8D1E4F53D600DC4DA1 /* usart.cpp */,
-				4EC3EB8E1E4F53D600DC4DA1 /* usart.hpp */,
-			);
-			name = Usart;
-			sourceTree = "<group>";
-		};
 		D10365C31E4F80200023E53C /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,26 +118,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
-		4EF566E41E3FC7DA00CDE8E4 /* quadcopterSTM */ = {
+		4EF566E41E3FC7DA00CDE8E4 /* stm32f4xcodeSTM */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 4EF566E51E3FC7DB00CDE8E4 /* Build configuration list for PBXLegacyTarget "quadcopterSTM" */;
+			buildConfigurationList = 4EF566E51E3FC7DB00CDE8E4 /* Build configuration list for PBXLegacyTarget "stm32f4xcodeSTM" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "$(PROJECT_DIR)/quadcopter";
+			buildWorkingDirectory = "$(PROJECT_DIR)/stm32f4xcode";
 			dependencies = (
 			);
-			name = quadcopterSTM;
+			name = stm32f4xcodeSTM;
 			passBuildSettingsInEnvironment = 1;
 			productName = quadcopterSTM;
 		};
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
-		4EF566C41E3FC77B00CDE8E4 /* quadcopter */ = {
+		4EF566C41E3FC77B00CDE8E4 /* stm32f4xcode */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4EF566CC1E3FC77B00CDE8E4 /* Build configuration list for PBXNativeTarget "quadcopter" */;
+			buildConfigurationList = 4EF566CC1E3FC77B00CDE8E4 /* Build configuration list for PBXNativeTarget "stm32f4xcode" */;
 			buildPhases = (
 				4EF566C11E3FC77B00CDE8E4 /* Sources */,
 				4EF566C21E3FC77B00CDE8E4 /* Frameworks */,
@@ -162,9 +147,9 @@
 			);
 			dependencies = (
 			);
-			name = quadcopter;
+			name = stm32f4xcode;
 			productName = quadcopter;
-			productReference = 4EF566C51E3FC77B00CDE8E4 /* quadcopter */;
+			productReference = 4EF566C51E3FC77B00CDE8E4 /* stm32f4xcode */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +171,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4EF566C01E3FC77B00CDE8E4 /* Build configuration list for PBXProject "quadcopter" */;
+			buildConfigurationList = 4EF566C01E3FC77B00CDE8E4 /* Build configuration list for PBXProject "stm32f4xcode" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -198,8 +183,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4EF566C41E3FC77B00CDE8E4 /* quadcopter */,
-				4EF566E41E3FC7DA00CDE8E4 /* quadcopterSTM */,
+				4EF566C41E3FC77B00CDE8E4 /* stm32f4xcode */,
+				4EF566E41E3FC7DA00CDE8E4 /* stm32f4xcodeSTM */,
 			);
 		};
 /* End PBXProject section */
@@ -214,8 +199,6 @@
 				4EF566DF1E3FC78700CDE8E4 /* Makefile in Sources */,
 				4EF566E01E3FC78700CDE8E4 /* startup_stm32f4xx.c in Sources */,
 				4EF566E31E3FC78700CDE8E4 /* system_stm32f4xx.c in Sources */,
-				4EF566DE1E3FC78700CDE8E4 /* main.co in Sources */,
-				4EC3EB8F1E4F53D600DC4DA1 /* usart.cpp in Sources */,
 				4EF566E11E3FC78700CDE8E4 /* stm32f4_P24_definitions.s in Sources */,
 				4EF566DD1E3FC78700CDE8E4 /* CortexM4asmOps.s in Sources */,
 			);
@@ -353,7 +336,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4EF566C01E3FC77B00CDE8E4 /* Build configuration list for PBXProject "quadcopter" */ = {
+		4EF566C01E3FC77B00CDE8E4 /* Build configuration list for PBXProject "stm32f4xcode" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4EF566CA1E3FC77B00CDE8E4 /* Debug */,
@@ -362,7 +345,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4EF566CC1E3FC77B00CDE8E4 /* Build configuration list for PBXNativeTarget "quadcopter" */ = {
+		4EF566CC1E3FC77B00CDE8E4 /* Build configuration list for PBXNativeTarget "stm32f4xcode" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4EF566CD1E3FC77B00CDE8E4 /* Debug */,
@@ -371,7 +354,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4EF566E51E3FC7DB00CDE8E4 /* Build configuration list for PBXLegacyTarget "quadcopterSTM" */ = {
+		4EF566E51E3FC7DB00CDE8E4 /* Build configuration list for PBXLegacyTarget "stm32f4xcodeSTM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4EF566E61E3FC7DB00CDE8E4 /* Debug */,

@@ -1,10 +1,3 @@
-//
-//  def.h
-//  imma throw a bunch of definitions here
-//
-//  Created by Muhsin Fatih Yorulmaz on 04/02/2017.
-//  Copyright © 2017 mekatrotekno. All rights reserved.
-//
 
 #ifndef def_h
 #define def_h
