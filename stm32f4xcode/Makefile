@@ -59,7 +59,7 @@ ifeq ($(DEVICE_DEF), )
 DEVICE_DEF = STM32F40_41xxx
 endif
 
-CFLAGS += -D$(DEVICE_DEF) -DBAUDRATE=$(BAUDRATE)
+CFLAGS += -D$(DEVICE_DEF) -DBAUDRATE=$(BAUDRATE) -g
 
 vpath %.a lib
 
@@ -113,5 +113,8 @@ clean:
 	$(MAKE) clean -C lib
 
 flash:
-	@/usr/local/bin/st-flash write $(shell pwd)/build/$(PROJECT_NAME).bin 0x08000000 -s
+	@/usr/local/bin/st-flash write $(OUTPATH)/$(PROJECT_NAME).bin 0x08000000 -s
+	sleep 1
+	@/usr/local/bin/st-util
+	@/usr/local/bin/arm-none-eabi-gdb -ex tar "extended-remote :4242" -ex "load $(BUILD_DIR)/$(PROJECT_NAME).elf" -ex "continue"
 
