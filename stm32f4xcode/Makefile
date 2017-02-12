@@ -1,25 +1,15 @@
 # STM32F4-Discovery Makefile for Mac OSX
 SHELL:=/bin/bash
 
-SRCS=$(wildcard *.c)
+
+BAUDRATE = 115200
+
+OUTPATH = $(abspath $(BUILD_DIR))
+BASEDIR = $(abspath ./)
 
 CPPFILES = $(wildcard *.cpp)
 CFILES = $(wildcard *.c)
-BAUDRATE = 115200
 
-# Add assembly source files here or use $(wildcard *.s) for all .s files
-S_SRCS = CortexM4asmOps.s
-
-
-# Project name
-PROJ_NAME = quadcopter
-OUTPATH = build
-
-OUTPATH := $(abspath $(OUTPATH))
-BASEDIR := $(abspath ./)
-MKDIR_P = mkdir -p
-
-CWD = $(shell pwd)
 CPPOBJECTS = $(addprefix $(OUTPATH)/, $(notdir $(addsuffix .o, $(CPPFILES))))
 COBJECTS = $(addprefix $(OUTPATH)/, $(notdir $(addsuffix .o, $(CFILES))))
 
@@ -49,13 +39,13 @@ LD=$(BINPATH)arm-none-eabi-g++
 OBJCOPY=$(BINPATH)arm-none-eabi-objcopy
 OBJDUMP=$(BINPATH)arm-none-eabi-objdump
 SIZE=$(BINPATH)arm-none-eabi-size
-
+MKDIR_P = mkdir -p
 LINKER_SCRIPT = stm32_flash.ld
 
 CPU = -mcpu=cortex-m4 -mthumb
 
 CFLAGS  = $(CPU) -c -std=gnu99 -g -O2 -Wall
-LDFLAGS  = $(CPU) -mlittle-endian -mthumb-interwork -nostartfiles -Wl,--gc-sections,-Map=$(OUTPATH)/$(PROJ_NAME).map,--cref -specs=nosys.specs 
+LDFLAGS  = $(CPU) -mlittle-endian -mthumb-interwork -nostartfiles -Wl,--gc-sections,-Map=$(OUTPATH)/$(PROJECT_NAME).map,--cref -specs=nosys.specs 
 
 ifeq ($(FLOAT_TYPE), hard)
 CFLAGS += -fsingle-precision-constant -Wdouble-promotion
@@ -83,54 +73,45 @@ INCLUDE_PATHS += -I$(BASEDIR)/lib/STM32F4xx_StdPeriph_Driver/inc
 LIBPATHS = -L$(BASEDIR)/lib/STM32F4xx_StdPeriph_Driver
 
 # Libraries to link
-LIBS = -lstdperiph -lc -lgcc -lnosys -lm -lrdimon
-
-OBJS = $(SRCS:.c=.o)
-OBJS += $(S_SRCS:.s=.o)
+LIBS = -lstdperiph -lc -lgcc -lnosys -lm
 
 ###################################################
 
-.PHONY: lib proj
+.PHONY: all
 
-all: dir lib proj
+all: $(BUILD_DIR) $(OUTPATH)/$(PROJECT_NAME).elf
 	TAGS="TODO:|FIXME:"
 	./todo.sh
-	#$(SIZE) $(OUTPATH)/$(PROJ_NAME).elf
+	#$(SIZE) $(OUTPATH)/$(PROJECT_NAME).elf
 
-lib:
-	$(MAKE) -C lib FLOAT_TYPE=$(FLOAT_TYPE) BINPATH=$(BINPATH) DEVICE_DEF=$(DEVICE_DEF) BASEDIR=$(BASEDIR)
-
-proj: $(OUTPATH)/$(PROJ_NAME).elf
-
-
-$(OBJECTS): $(OUTPATH)/%.cpp.o: %.cpp
+$(CPPOBJECTS): $(OUTPATH)/%.cpp.o: %.cpp
 	@echo "(CP) $(notdir $<)"
-	$(CP) $(CFLAGS) -std=gnu99 $(INCLUDE_PATHS) -o  $(OUTPATH) $<
+	$(CP) $(CFLAGS) -std=gnu99 $(INCLUDE_PATHS) -o $@ $<
 
-$(OBJECTS): $(OUTPATH)/%.c.o: %.c
-	@echo "(CC)  $(notdir $<)"
+$(COBJECTS): $(OUTPATH)/%.c.o: %.c
+	@echo "(CC) $@ $(notdir $<)"
 	$(CC) $(CFLAGS) -std=gnu99 $(INCLUDE_PATHS) -o $@ $<
 
-$(OUTPATH)/$(PROJ_NAME).elf: $(OBJECTS)
+$(OUTPATH)/$(PROJECT_NAME).elf: $(OBJECTS)
 	$(AS) $(CPU) -o $(OUTPATH)/CortexM4asmOps.o CortexM4asmOps.s
 	$(LD) $(LDFLAGS) -T$(LINKER_SCRIPT) $(LIBPATHS) -o $@  $^ $(LIBS) $(LD_SYS_LIBS)
-	$(OBJCOPY) -O ihex $(OUTPATH)/$(PROJ_NAME).elf $(OUTPATH)/$(PROJ_NAME).hex
-	$(OBJCOPY) -O binary $(OUTPATH)/$(PROJ_NAME).elf $(OUTPATH)/$(PROJ_NAME).bin
-	$(OBJDUMP) -S --disassemble $(OUTPATH)/$(PROJ_NAME).elf > $(OUTPATH)/$(PROJ_NAME).dis
+	$(OBJCOPY) -O ihex $(OUTPATH)/$(PROJECT_NAME).elf $(OUTPATH)/$(PROJECT_NAME).hex
+	$(OBJCOPY) -O binary $(OUTPATH)/$(PROJECT_NAME).elf $(OUTPATH)/$(PROJECT_NAME).bin
+	$(OBJDUMP) -S --disassemble $(OUTPATH)/$(PROJECT_NAME).elf > $(OUTPATH)/$(PROJECT_NAME).dis
 
-dir:
+$(BUILD_DIR):
 	$(MKDIR_P) $(OUTPATH)
 
 clean:
 	rm -f $(OUTPATH)/*.o
-	rm -f $(OUTPATH)/$(PROJ_NAME).elf
-	rm -f $(OUTPATH)/$(PROJ_NAME).hex
-	rm -f $(OUTPATH)/$(PROJ_NAME).bin
-	rm -f $(OUTPATH)/$(PROJ_NAME).dis
-	rm -f $(OUTPATH)/$(PROJ_NAME).map
+	rm -f $(OUTPATH)/$(PROJECT_NAME).elf
+	rm -f $(OUTPATH)/$(PROJECT_NAME).hex
+	rm -f $(OUTPATH)/$(PROJECT_NAME).bin
+	rm -f $(OUTPATH)/$(PROJECT_NAME).dis
+	rm -f $(OUTPATH)/$(PROJECT_NAME).map
 	# Remove the following line if you don't want to clean the Libraries as well
 	$(MAKE) clean -C lib
 
 flash:
-	/usr/local/bin/st-flash write $(shell pwd)/build/$(PROJ_NAME).bin 0x08000000
+	@/usr/local/bin/st-flash write $(shell pwd)/build/$(PROJECT_NAME).bin 0x08000000 -s
 

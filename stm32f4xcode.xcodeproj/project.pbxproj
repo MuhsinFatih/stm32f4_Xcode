@@ -29,7 +29,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4EC3EB931E50746600DC4DA1 /* build */ = {isa = PBXFileReference; lastKnownFileType = folder; name = build; path = stm32f4xcode/build; sourceTree = SOURCE_ROOT; };
 		4EC3EB941E50746600DC4DA1 /* CortexM4asmOps.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = CortexM4asmOps.s; path = stm32f4xcode/CortexM4asmOps.s; sourceTree = SOURCE_ROOT; };
 		4EC3EB951E50746600DC4DA1 /* def.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = def.h; path = stm32f4xcode/def.h; sourceTree = SOURCE_ROOT; };
 		4EC3EB961E50746600DC4DA1 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = stm32f4xcode/lib; sourceTree = SOURCE_ROOT; };
@@ -80,11 +79,19 @@
 		4EF566C71E3FC77B00CDE8E4 /* stm32f4xcode */ = {
 			isa = PBXGroup;
 			children = (
-				4EC3EB931E50746600DC4DA1 /* build */,
+				D13E80241E50DEF5006692B9 /* STM32 */,
+				4EC3EB971E50746600DC4DA1 /* main.cpp */,
+			);
+			name = stm32f4xcode;
+			path = quadcopter;
+			sourceTree = "<group>";
+		};
+		D13E80241E50DEF5006692B9 /* STM32 */ = {
+			isa = PBXGroup;
+			children = (
 				4EC3EB941E50746600DC4DA1 /* CortexM4asmOps.s */,
 				4EC3EB951E50746600DC4DA1 /* def.h */,
 				4EC3EB961E50746600DC4DA1 /* lib */,
-				4EC3EB971E50746600DC4DA1 /* main.cpp */,
 				4EC3EB981E50746600DC4DA1 /* main.hpp */,
 				4EC3EB991E50746600DC4DA1 /* Makefile */,
 				4EC3EB9A1E50746600DC4DA1 /* Makefile.orig */,
@@ -99,8 +106,7 @@
 				4EC3EBA31E50746600DC4DA1 /* system_stm32f4xx.c */,
 				4EC3EBA41E50746600DC4DA1 /* todo.sh */,
 			);
-			name = stm32f4xcode;
-			path = quadcopter;
+			name = STM32;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

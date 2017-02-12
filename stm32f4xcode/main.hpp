@@ -11,8 +11,6 @@
 #define INPUT	GPIO_Mode_IN
 #define NOPULL	GPIO_PuPd_NOPULL
 
-#define true	1
-#define false	0
 
 #define read(idr,pin) (idr & pin)
 #define enableFloatingPoint() (*((int*)0xE000ED88))|=0x0F00000;  // Floating Point donanimini aktiflestir.
@@ -49,7 +47,6 @@
 extern "C" {
 #endif
 	int main();
-	void cpp_main();
 #ifdef __cplusplus
 }
 #endif

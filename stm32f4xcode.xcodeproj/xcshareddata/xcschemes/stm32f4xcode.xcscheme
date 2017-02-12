@@ -37,7 +37,7 @@
       selectedDebuggerIdentifier = ""
       selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
-      useCustomWorkingDirectory = "YES"
+      useCustomWorkingDirectory = "NO"
       customWorkingDirectory = "$(PROJECT_DIR)/quadcopter"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
@@ -58,10 +58,26 @@
       </MacroExpansion>
       <CommandLineArguments>
          <CommandLineArgument
+            argument = "--directory $(PROJECT_DIR)/stm32f4xcode"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "flash"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "PROJECT_NAME"
+            value = "$(PROJECT_NAME)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "OUTPATH"
+            value = "OUTPATH"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
