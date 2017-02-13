@@ -30,6 +30,11 @@ override FLOAT_TYPE = soft
 endif
 endif
 
+ifeq ($(BUILD_DIR), )
+BUILD_DIR=../build
+PROJECT_NAME=program
+endif
+
 ###################################################
 
 AS=$(BINPATH)arm-none-eabi-as
@@ -77,12 +82,12 @@ LIBS = -lstdperiph -lc -lgcc -lnosys -lm
 
 ###################################################
 
-.PHONY: all
+.PHONY: all clean flash
 
 all: $(BUILD_DIR) $(OUTPATH)/$(PROJECT_NAME).elf
-	TAGS="TODO:|FIXME:"
-	./todo.sh
-	#$(SIZE) $(OUTPATH)/$(PROJECT_NAME).elf
+	@TAGS="TODO:|FIXME:"
+	@./todo.sh
+	@$(SIZE) $(OUTPATH)/$(PROJECT_NAME).elf
 
 $(CPPOBJECTS): $(OUTPATH)/%.cpp.o: %.cpp
 	@echo "(CP) $(notdir $<)"
