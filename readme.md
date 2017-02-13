@@ -1,5 +1,5 @@
 # STM32F4 Xcode template
-This is an **Xcode template for stm32f4 boards using gcc arm toolchain**, based on the macos template in the [STM32F4_Templates](#https://github.com/TDAbboud/STM32F4_Templates) repository created by [Tony Abboud](#https://github.com/TDAbboud). I would highly recommend you to check out his Youtube series: [STM32F4 Development Series](#https://www.youtube.com/playlist?list=PL0wGKPc4_PKMqP_EkIwpvExM2rvi_-R3z)  
+This is an **Xcode template for stm32f4 boards using gcc arm toolchain**, based on the macos template in the [STM32F4_Templates](https://github.com/TDAbboud/STM32F4_Templates) repository created by [Tony Abboud](https://github.com/TDAbboud). I would highly recommend you to check out his Youtube series: [STM32F4 Development Series](https://www.youtube.com/playlist?list=PL0wGKPc4_PKMqP_EkIwpvExM2rvi_-R3z)  
 Forgive me when I call most of the information on programming with STM32F4 on internet garbage, but this guy really knows what he is doing and I enjoyed his tutorials, I suggest you take the time and watch his videos if you are not familiar with STM32 environment. 
 
 ##Getting started
@@ -9,7 +9,7 @@ Forgive me when I call most of the information on programming with STM32F4 on in
 ###Open the project in Xcode###
 I don't think this needs any explanation ^^  
 ###Set up the toolchain###
-You can follow the steps here, or watch the first video in the series I mentioned: [STM32F4 Dev. | #1 - Setup the Toolchain / Templates (Barebones)](#https://youtu.be/Frh-oPw7NjI?list=PL0wGKPc4_PKMqP_EkIwpvExM2rvi_-R3z)  
+You can follow the steps here, or watch the first video in the series I mentioned: [STM32F4 Dev. | #1 - Setup the Toolchain / Templates (Barebones)](https://youtu.be/Frh-oPw7NjI?list=PL0wGKPc4_PKMqP_EkIwpvExM2rvi_-R3z)  
 The two are slightly different, but both should work. 
 
 
