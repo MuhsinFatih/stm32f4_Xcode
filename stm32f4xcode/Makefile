@@ -121,8 +121,13 @@ clean:
 	$(MAKE) clean -C lib
 
 flash:
-	@/usr/local/bin/st-flash write $(OUTPATH)/$(PROJECT_NAME).bin 0x08000000 -s
-	sleep 1
-	@/usr/local/bin/st-util
-	@/usr/local/bin/arm-none-eabi-gdb $(BUILD_DIR)/$(PROJECT_NAME).elf -ex "tar extended-remote :4242" -ex"monitor arm semihosting enable" -ex "monitor reset halt" -ex "load $(BUILD_DIR)/$(PROJECT_NAME).elf" -ex "continue"
+	@#-killall st-util
+	@#-killall arm-none-eabi-gdb
+	@#sleep 0.3
+	@/usr/local/bin/st-flash write $(OUTPATH)/$(PROJECT_NAME).bin 0x08000000 #> /dev/null 2>&1
+	@echo "flash done"
+	@#sleep 0.3
+	@#/usr/local/bin/st-util&
+	@#sleep 1
+	@#/usr/local/bin/arm-none-eabi-gdb $(BUILD_DIR)/$(PROJECT_NAME).elf -ex "tar extended-remote :4242" -ex "monitor arm semihosting enable" -ex "monitor reset halt" -ex "load $(BUILD_DIR)/$(PROJECT_NAME).elf" -ex "continue"
 
