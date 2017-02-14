@@ -1,6 +1,11 @@
 
 #include "main.hpp"
 
-int main() {
+// TODO: Hello World
+void setup() {
+	
+}
+
+void loop() {
 	
 }

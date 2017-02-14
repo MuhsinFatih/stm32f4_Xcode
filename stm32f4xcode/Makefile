@@ -13,7 +13,7 @@ CFILES = $(wildcard *.c)
 CPPOBJECTS = $(addprefix $(OUTPATH)/, $(notdir $(addsuffix .o, $(CPPFILES))))
 COBJECTS = $(addprefix $(OUTPATH)/, $(notdir $(addsuffix .o, $(CFILES))))
 
-
+STAND_ALONE=0
 OBJECTS += $(CPPOBJECTS)
 OBJECTS += $(COBJECTS)
 
@@ -33,6 +33,7 @@ endif
 ifeq ($(BUILD_DIR), )
 BUILD_DIR=../build
 PROJECT_NAME=program
+STAND_ALONE=1
 endif
 
 ###################################################
@@ -85,8 +86,10 @@ LIBS = -lstdperiph -lc -lgcc -lnosys -lm
 .PHONY: all clean flash
 
 all: $(BUILD_DIR) $(OUTPATH)/$(PROJECT_NAME).elf
+ifeq ($(STAND_ALONE) , 0)
 	@TAGS="TODO:|FIXME:"
 	@./todo.sh
+endif
 	@$(SIZE) $(OUTPATH)/$(PROJECT_NAME).elf
 
 $(CPPOBJECTS): $(OUTPATH)/%.cpp.o: %.cpp
@@ -121,5 +124,5 @@ flash:
 	@/usr/local/bin/st-flash write $(OUTPATH)/$(PROJECT_NAME).bin 0x08000000 -s
 	sleep 1
 	@/usr/local/bin/st-util
-	@/usr/local/bin/arm-none-eabi-gdb -ex tar "extended-remote :4242" -ex "load $(BUILD_DIR)/$(PROJECT_NAME).elf" -ex "continue"
+	@/usr/local/bin/arm-none-eabi-gdb $(BUILD_DIR)/$(PROJECT_NAME).elf -ex "tar extended-remote :4242" -ex"monitor arm semihosting enable" -ex "monitor reset halt" -ex "load $(BUILD_DIR)/$(PROJECT_NAME).elf" -ex "continue"
 

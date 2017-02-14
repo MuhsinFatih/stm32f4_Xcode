@@ -143,7 +143,8 @@ extern void SystemInit(void);
 void Reset_Handler(void) __attribute__((__interrupt__));
 extern void main();
 extern void _CPUregTestPOST (void);
-
+extern void setup();
+extern void loop();
 /******************************************************************************
 *
 * The minimal vector table for a Cortex M3.	Note that the proper constructs
@@ -151,6 +152,13 @@ extern void _CPUregTestPOST (void);
 * 0x0000.0000.
 *
 ******************************************************************************/
+
+void main() {
+	setup();
+	for(;;) {
+		loop();
+	}
+}
 
 __attribute__ ((section(".isr_vector")))
 void (* const g_pfnVectors[])(void) =
