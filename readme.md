@@ -43,3 +43,10 @@ This will put build files in `build` folder in the project folder, whereas Xcode
 
 ##Troubleshooting
 If you have any issues please report it. Feel free to submit a pull request if you have any fixes to issues or any improvements.
+
+If you follow [STM32F4 Development Series](https://www.youtube.com/playlist?list=PL0wGKPc4_PKMqP_EkIwpvExM2rvi_-R3z) as I said on top of this page, make sure you wrap interrupt functions with ``` extern "C" {} ``` in case you want to define them inside a c++ file. Like so:
+    
+    extern "C" {
+    interrupt function() { ... }
+    }
+Otherwise your program will crash. Here's a SO discussion with detailed info: [Why isn't my SysTick_Handler() being called in my LPCxpresso C++ Project?](http://electronics.stackexchange.com/a/93984)
